@@ -24,22 +24,38 @@
             color: #222;
             line-height: 1.6;
         }
-.food-card {
-  position: relative;
-}
 
-.popular-badge {
-  position: absolute;
-  top: 12px;
-  left: 14px;
-  background: #f6c453;
-  color: #32170b;
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  z-index: 2;
-}
+        /* FOOD CARD */
+
+        .food-card {
+            position: relative;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform .3s ease, box-shadow .3s ease;
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0, 0, 0, .14);
+        }
+
+        /* POPULAR BADGE */
+
+        .popular-badge {
+            position: absolute;
+            top: 12px;
+            left: 14px;
+            background: #f6c453;
+            color: #32170b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
         /* NAVIGATION */
 
         header {
@@ -115,28 +131,9 @@
             font-size: 19px;
             margin-bottom: 30px;
         }
-.whatsapp-float {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #25D366;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 28px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.25);
-  z-index: 2000;
-  transition: transform .2s ease;
-}
 
-.whatsapp-float:hover {
-  transform: scale(1.08);
-}
+        /* BUTTONS */
+
         .buttons {
             display: flex;
             justify-content: center;
@@ -160,6 +157,31 @@
         .secondary {
             border: 2px solid white;
             color: white;
+        }
+
+        /* WHATSAPP FLOAT */
+
+        .whatsapp-float {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+            z-index: 2000;
+            transition: transform .2s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.08);
         }
 
         /* GENERAL SECTIONS */
@@ -201,24 +223,6 @@
                 repeat(auto-fit, minmax(240px, 1fr));
 
             gap: 25px;
-        }
-
-        .food-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: 0.3s;
-        }
-
-      .food-card {
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.food-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 35px rgba(0,0,0,.14);
-}
         }
 
         .food-image {
@@ -449,7 +453,6 @@
     </style>
 </head>
 
-
 <body>
 
     <!-- NAVIGATION -->
@@ -523,8 +526,11 @@
 
             <!-- JOLLOF -->
 
-          <div class="food-card">
-  <div class="popular-badge">POPULAR ⭐</div>
+            <div class="food-card">
+
+                <div class="popular-badge">
+                    POPULAR ⭐
+                </div>
 
                 <div class="food-image jollof"></div>
 
@@ -893,11 +899,17 @@
 
     </footer>
 
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+
+    <a
+        class="whatsapp-float"
+        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20place%20an%20order."
+        aria-label="Order on WhatsApp"
+    >
+        💬
+    </a>
+
 </body>
-<a class="whatsapp-float"
-   href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20place%20an%20order."
-   aria-label="Order on WhatsApp">
-  💬
-</a>
 
 </html>
