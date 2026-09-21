@@ -152,104 +152,141 @@
 
         /* MENU */
 
-        .menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-            max-width: 1100px;
-            margin: auto;
-        }
+      <!-- MENU -->
 
-        .food-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            transition: 0.3s;
-        }
+<section id="menu">
 
-        .food-card:hover {
-            transform: translateY(-8px);
-        }
+    <div class="section-title">
+        <small>Our Menu</small>
+        <h2>Popular Dishes 🍽️</h2>
+        <p>Fresh Ghanaian meals prepared with love.</p>
+    </div>
 
-        .food-image {
-            height: 190px;
-            background-size: cover;
-            background-position: center;
-        }
+    <div class="menu">
 
-        .jollof {
-            background-image: url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80");
-        }
+        <div class="food-card">
+            <div class="food-image jollof"></div>
 
-        .rice {
-            background-image: url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80");
-        }
+            <div class="food-info">
+                <h3>Jollof & Chicken</h3>
+                <p>Ghana-style jollof served with juicy chicken.</p>
 
-        .chicken {
-            background-image: url("https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80");
-        }
+                <div class="price-row">
+                    <span class="price">₵35</span>
 
-        .fish {
-            background-image: url("https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80");
-        }
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Jollof%20and%20Chicken."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        .food-info {
-            padding: 22px;
-        }
 
-        .food-info h3 {
-            font-size: 21px;
-            margin-bottom: 6px;
-        }
+        <div class="food-card">
+            <div class="food-image rice"></div>
 
-        .food-info p {
-            color: #666;
-            font-size: 14px;
-        }
+            <div class="food-info">
+                <h3>Waakye Special</h3>
+                <p>Traditional waakye served with tasty sides.</p>
 
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 18px;
-        }
+                <div class="price-row">
+                    <span class="price">₵30</span>
 
-        .price {
-            color: #a52a2a;
-            font-size: 20px;
-            font-weight: bold;
-        }
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Waakye."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        .order-small {
-            background: #a52a2a;
-            color: white;
-            padding: 9px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 13px;
-        }
 
-        /* ABOUT */
+        <div class="food-card">
+            <div class="food-image chicken"></div>
 
-        .about {
-            background: #32170b;
-            color: white;
-        }
+            <div class="food-info">
+                <h3>Fried Rice & Chicken</h3>
+                <p>Seasoned fried rice served with crispy chicken.</p>
 
-        .about-container {
-            max-width: 1000px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+                <div class="price-row">
+                    <span class="price">₵35</span>
 
-        .about h2 {
-            font-size: 38px;
-            margin-bottom: 20px;
-        }
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Fried%20Rice%20and%20Chicken."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="food-card">
+            <div class="food-image fish"></div>
+
+            <div class="food-info">
+                <h3>Banku & Tilapia</h3>
+                <p>Grilled tilapia served with fresh pepper and banku.</p>
+
+                <div class="price-row">
+                    <span class="price">₵50</span>
+
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Banku%20and%20Tilapia."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="food-card">
+            <div class="food-image jollof"></div>
+
+            <div class="food-info">
+                <h3>Fufu & Light Soup</h3>
+                <p>Soft fufu served with delicious Ghanaian light soup.</p>
+
+                <div class="price-row">
+                    <span class="price">₵45</span>
+
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Fufu%20and%20Light%20Soup."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="food-card">
+            <div class="food-image chicken"></div>
+
+            <div class="food-info">
+                <h3>Kelewele</h3>
+                <p>Spicy fried plantain seasoned with Ghanaian spices.</p>
+
+                <div class="price-row">
+                    <span class="price">₵20</span>
+
+                    <a
+                        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Kelewele."
+                        class="order-small">
+                        Order
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+    
 
         .about p {
             color: #ddd;
