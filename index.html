@@ -24,7 +24,22 @@
             color: #222;
             line-height: 1.6;
         }
+.food-card {
+  position: relative;
+}
 
+.popular-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: #f6c453;
+  color: #32170b;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 2;
+}
         /* NAVIGATION */
 
         header {
@@ -196,8 +211,14 @@
             transition: 0.3s;
         }
 
-        .food-card:hover {
-            transform: translateY(-7px);
+      .food-card {
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 35px rgba(0,0,0,.14);
+}
         }
 
         .food-image {
@@ -502,7 +523,8 @@
 
             <!-- JOLLOF -->
 
-            <div class="food-card">
+          <div class="food-card">
+  <div class="popular-badge">POPULAR ⭐</div>
 
                 <div class="food-image jollof"></div>
 
