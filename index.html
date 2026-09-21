@@ -1,99 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ama's Kitchen | Authentic Ghanaian Food</title>
+    <title>Ama's Kitchen | Ghanaian Food</title>
 
     <style>
-      /* MENU FIX */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.menu {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 25px;
-    max-width: 1100px;
-    margin: auto;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-.food-card {
-    background: white;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: 0.3s;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffaf3;
+            color: #222;
+            line-height: 1.6;
+        }
 
-.food-card:hover {
-    transform: translateY(-8px);
-}
+        /* NAVIGATION */
 
-.food-image {
-    height: 190px;
-    background-size: cover;
-    background-position: center;
-}
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #32170b;
+            color: white;
+            padding: 18px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.jollof {
-    background-image: url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80");
-}
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
 
-.rice {
-    background-image: url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80");
-}
+        .logo span {
+            color: #f6c453;
+        }
 
-.chicken {
-    background-image: url("https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80");
-}
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 15px;
+        }
 
-.fish {
-    background-image: url("https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80");
-}
+        nav a:hover {
+            color: #f6c453;
+        }
 
-.food-info {
-    padding: 22px;
-}
+        /* HERO */
 
-.food-info h3 {
-    font-size: 21px;
-    margin-bottom: 6px;
-}
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 60px 20px;
 
-.food-info p {
-    color: #666;
-    font-size: 14px;
-}
+            background:
+                linear-gradient(
+                    rgba(45, 20, 8, 0.65),
+                    rgba(45, 20, 8, 0.65)
+                ),
+                url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1600&q=80");
 
-.price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 18px;
-}
+            background-size: cover;
+            background-position: center;
 
-.price {
-    color: #a52a2a;
-    font-size: 20px;
-    font-weight: bold;
-}
+            color: white;
+        }
 
-.order-small {
-    background: #a52a2a;
-    color: white;
-    padding: 9px 15px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 13px;
-}
+        .hero-content {
+            max-width: 750px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 10vw, 72px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f6c453;
+        }
+
+        .hero p {
+            font-size: 19px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: #f6c453;
+            color: #32170b;
+        }
+
+        .secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 75px 6%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title small {
+            color: #a52a2a;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-top: 5px;
+        }
+
+        .section-title p {
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* MENU */
+
+        .menu {
+            max-width: 1100px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(240px, 1fr));
+
+            gap: 25px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .food-image {
+            height: 190px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .jollof {
+            background-image:
+                url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .rice {
+            background-image:
+                url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .chicken {
+            background-image:
+                url("https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .fish {
+            background-image:
+                url("https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .food-info {
+            padding: 22px;
+        }
+
+        .food-info h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .food-info p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+
+        .price {
+            color: #a52a2a;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .order-small {
+            background: #a52a2a;
+            color: white;
+            padding: 9px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        /* ABOUT */
+
+        .about {
+            background: #32170b;
+            color: white;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 45px;
+            align-items: center;
+        }
+
+        .about h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            color: #ddd;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .feature strong {
+            display: block;
+            color: #f6c453;
+            margin-bottom: 5px;
+        }
+
+        /* REVIEWS */
+
+        .reviews {
+            max-width: 1000px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .stars {
+            color: #e6a900;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .review p {
+            color: #555;
+            font-style: italic;
+        }
+
+        .review strong {
+            display: block;
+            margin-top: 15px;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: #f6c453;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            margin: 7px;
+        }
+
+        .contact-button {
+            display: inline-block;
+            margin-top: 20px;
+            background: #32170b;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #1d1008;
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer strong {
+            color: white;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            header {
+                padding: 15px 18px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            nav a {
+                margin-left: 8px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 80vh;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            .section-title h2,
+            .about h2,
+            .contact h2 {
+                font-size: 30px;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     </style>
 </head>
+
 
 <body>
 
     <!-- NAVIGATION -->
 
     <header>
+
         <div class="logo">
             Ama's <span>Kitchen 🍲</span>
         </div>
@@ -103,6 +423,7 @@
             <a href="#about">About</a>
             <a href="#contact">Contact</a>
         </nav>
+
     </header>
 
 
@@ -148,10 +469,17 @@
 
             <h2>Popular Dishes 🍽️</h2>
 
+            <p>
+                Fresh Ghanaian meals prepared with love.
+            </p>
+
         </div>
 
 
         <div class="menu">
+
+
+            <!-- JOLLOF -->
 
             <div class="food-card">
 
@@ -170,7 +498,10 @@
 
                         <span class="price">₵35</span>
 
-                        <a href="#contact" class="order-small">
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Jollof%20and%20Chicken."
+                        >
                             Order
                         </a>
 
@@ -180,6 +511,8 @@
 
             </div>
 
+
+            <!-- WAAKYE -->
 
             <div class="food-card">
 
@@ -198,7 +531,10 @@
 
                         <span class="price">₵30</span>
 
-                        <a href="#contact" class="order-small">
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Waakye."
+                        >
                             Order
                         </a>
 
@@ -208,6 +544,8 @@
 
             </div>
 
+
+            <!-- FRIED RICE -->
 
             <div class="food-card">
 
@@ -215,17 +553,21 @@
 
                 <div class="food-info">
 
-                    <h3>Fried Chicken & Rice</h3>
+                    <h3>Fried Rice & Chicken</h3>
 
                     <p>
-                        Crispy chicken with tasty seasoned rice.
+                        Flavorful fried rice served
+                        with crispy chicken.
                     </p>
 
                     <div class="price-row">
 
                         <span class="price">₵35</span>
 
-                        <a href="#contact" class="order-small">
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Fried%20Rice%20and%20Chicken."
+                        >
                             Order
                         </a>
 
@@ -236,24 +578,95 @@
             </div>
 
 
+            <!-- TILAPIA -->
+
             <div class="food-card">
 
                 <div class="food-image fish"></div>
 
                 <div class="food-info">
 
-                    <h3>Grilled Fish</h3>
+                    <h3>Banku & Tilapia</h3>
 
                     <p>
-                        Fresh grilled fish served with
-                        a delicious side.
+                        Grilled tilapia served with
+                        fresh pepper and banku.
                     </p>
 
                     <div class="price-row">
 
                         <span class="price">₵50</span>
 
-                        <a href="#contact" class="order-small">
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Banku%20and%20Tilapia."
+                        >
+                            Order
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FUFU -->
+
+            <div class="food-card">
+
+                <div class="food-image jollof"></div>
+
+                <div class="food-info">
+
+                    <h3>Fufu & Light Soup</h3>
+
+                    <p>
+                        Soft fufu served with delicious
+                        Ghanaian light soup.
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">₵45</span>
+
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Fufu%20and%20Light%20Soup."
+                        >
+                            Order
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- KELEWELE -->
+
+            <div class="food-card">
+
+                <div class="food-image chicken"></div>
+
+                <div class="food-info">
+
+                    <h3>Kelewele</h3>
+
+                    <p>
+                        Spicy fried plantain seasoned
+                        with Ghanaian spices.
+                    </p>
+
+                    <div class="price-row">
+
+                        <span class="price">₵20</span>
+
+                        <a
+                            class="order-small"
+                            href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20order%20Kelewele."
+                        >
                             Order
                         </a>
 
@@ -282,16 +695,14 @@
 
                 <p>
                     At Ama's Kitchen, we believe good food
-                    brings people together. Our meals are
-                    inspired by the rich flavors and traditions
-                    of Ghana.
+                    brings people together.
                 </p>
 
                 <br>
 
                 <p>
-                    From family lunches to special occasions,
-                    we're here to serve something delicious.
+                    Our meals are inspired by the rich
+                    flavors and traditions of Ghana.
                 </p>
 
             </div>
@@ -343,11 +754,13 @@
 
             <div class="review">
 
-                <div class="stars">★★★★★</div>
+                <div class="stars">
+                    ★★★★★
+                </div>
 
                 <p>
-                    "The jollof was amazing! I'll definitely
-                    order again."
+                    "The jollof was amazing!
+                    I'll definitely order again."
                 </p>
 
                 <strong>— Nana</strong>
@@ -357,11 +770,13 @@
 
             <div class="review">
 
-                <div class="stars">★★★★★</div>
+                <div class="stars">
+                    ★★★★★
+                </div>
 
                 <p>
-                    "Great food, friendly service and
-                    reasonable prices."
+                    "Great food, friendly service
+                    and reasonable prices."
                 </p>
 
                 <strong>— Kojo</strong>
@@ -371,11 +786,13 @@
 
             <div class="review">
 
-                <div class="stars">★★★★★</div>
+                <div class="stars">
+                    ★★★★★
+                </div>
 
                 <p>
-                    "One of my favorite places to get
-                    Ghanaian food."
+                    "One of my favorite places
+                    to get Ghanaian food."
                 </p>
 
                 <strong>— Ama</strong>
@@ -391,17 +808,21 @@
 
     <section id="contact" class="contact">
 
-        <h2>Ready to Eat? 😋</h2>
+        <h2>
+            Ready to Eat? 😋
+        </h2>
 
         <p>📍 Accra, Ghana</p>
 
-        <p>📞 0508220231</p>
+        <p>📞 050 000 0000</p>
 
-        <p>🕐 Mon – Sat: 10:00 AM – 9:00 PM</p>
+        <p>
+            🕐 Mon – Sat: 10:00 AM – 9:00 PM
+        </p>
 
         <a
-            href="https://wa.me/233500000000"
             class="contact-button"
+            href="https://wa.me/233500000000"
         >
             💬 Order on WhatsApp
         </a>
@@ -424,10 +845,11 @@
         <br>
 
         <p>
-            x© 2026 Ama's Kitchen. All rights reserved.
+            © 2026 Ama's Kitchen. All rights reserved.
         </p>
 
     </footer>
 
 </body>
-</html></html>
+
+</html>
