@@ -1,1686 +1,1904 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Ama's Kitchen | Ghanaian Food</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: #fffaf3;
-            color: #222;
-            line-height: 1.6;
-        }
-
-        /* =========================
-           NAVIGATION
-        ========================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: #32170b;
-            color: white;
-            padding: 18px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-        }
-
-        .logo span {
-            color: #f6c453;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 18px;
-            font-size: 15px;
-        }
-
-        nav a:hover {
-            color: #f6c453;
-        }
-
-        /* CART BUTTON */
-
-        .cart-button {
-            margin-left: 20px;
-            border: none;
-            background: #f6c453;
-            color: #32170b;
-            padding: 9px 15px;
-            border-radius: 22px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .cart-count {
-            background: #a52a2a;
-            color: white;
-            padding: 2px 7px;
-            border-radius: 50%;
-            margin-left: 4px;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 60px 20px;
-
-            background:
-                linear-gradient(
-                    rgba(45, 20, 8, 0.65),
-                    rgba(45, 20, 8, 0.65)
-                ),
-                url("https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1600&q=80");
-
-            background-size: cover;
-            background-position: center;
-            color: white;
-        }
-
-        .hero-content {
-            max-width: 750px;
-        }
-
-        .hero h1 {
-            font-size: clamp(42px, 10vw, 72px);
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            color: #f6c453;
-        }
-
-        .hero p {
-            font-size: 19px;
-            margin-bottom: 30px;
-        }
-
-        /* =========================
-           BUTTONS
-        ========================= */
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .primary {
-            background: #f6c453;
-            color: #32170b;
-        }
-
-        .secondary {
-            border: 2px solid white;
-            color: white;
-        }
-
-        /* =========================
-           GENERAL SECTIONS
-        ========================= */
-
-        section {
-            padding: 75px 6%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title small {
-            color: #a52a2a;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .section-title h2 {
-            font-size: 38px;
-            margin-top: 5px;
-        }
-
-        .section-title p {
-            color: #666;
-            margin-top: 8px;
-        }
-
-        /* =========================
-           MENU
-        ========================= */
-
-        .menu {
-            max-width: 1100px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(240px, 1fr));
-
-            gap: 25px;
-        }
-
-        .food-card {
-            position: relative;
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            transition: transform .3s ease, box-shadow .3s ease;
-        }
-
-        .food-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, .14);
-        }
-
-        /* POPULAR BADGE */
-
-        .popular-badge {
-            position: absolute;
-            top: 12px;
-            left: 14px;
-            background: #f6c453;
-            color: #32170b;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            z-index: 2;
-        }
-
-        .food-image {
-            height: 190px;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .jollof {
-            background-image:
-                url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .rice {
-            background-image:
-                url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .chicken {
-            background-image:
-                url("https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .fish {
-            background-image:
-                url("https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80");
-        }
-
-        .food-info {
-            padding: 22px;
-        }
-
-        .food-info h3 {
-            font-size: 21px;
-            margin-bottom: 8px;
-        }
-
-        .food-info p {
-            color: #666;
-            font-size: 14px;
-        }
-
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 18px;
-        }
-
-        .price {
-            color: #a52a2a;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .add-button {
-            border: none;
-            background: #a52a2a;
-            color: white;
-            padding: 9px 16px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .add-button:hover {
-            background: #32170b;
-        }
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about {
-            background: #32170b;
-            color: white;
-        }
-
-        .about-container {
-            max-width: 1000px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 45px;
-            align-items: center;
-        }
-
-        .about h2 {
-            font-size: 38px;
-            margin-bottom: 20px;
-        }
-
-        .about p {
-            color: #ddd;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .feature {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 20px;
-            border-radius: 12px;
-        }
-
-        .feature strong {
-            display: block;
-            color: #f6c453;
-            margin-bottom: 5px;
-        }
-
-        /* =========================
-           REVIEWS
-        ========================= */
-
-        .reviews {
-            max-width: 1000px;
-            margin: auto;
-
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 20px;
-        }
-
-        .review {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-        }
-
-        .stars {
-            color: #e6a900;
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
-
-        .review p {
-            color: #555;
-            font-style: italic;
-        }
-
-        .review strong {
-            display: block;
-            margin-top: 15px;
-        }
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact {
-            background: #f6c453;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
-        }
-
-        .contact p {
-            margin: 7px;
-        }
-
-        .contact-button {
-            display: inline-block;
-            margin-top: 20px;
-            background: #32170b;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            background: #1d1008;
-            color: #aaa;
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        footer strong {
-            color: white;
-        }
-
-        /* =========================
-           WHATSAPP FLOAT
-        ========================= */
-
-        .whatsapp-float {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #25D366;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,.25);
-            z-index: 2000;
-        }
-
-        /* =========================
-           CART PANEL
-        ========================= */
-
-        .cart-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,.55);
-            z-index: 3000;
-            display: none;
-        }
-
-        .cart-overlay.active {
-            display: block;
-        }
-
-        .cart-panel {
-            position: fixed;
-            right: 0;
-            top: 0;
-            width: min(420px, 92%);
-            height: 100%;
-            background: #fffaf3;
-            z-index: 3001;
-            transform: translateX(100%);
-            transition: transform .3s ease;
-            overflow-y: auto;
-            padding: 25px;
-        }
-
-        .cart-panel.active {
-            transform: translateX(0);
-        }
-
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .cart-header h2 {
-            color: #32170b;
-        }
-
-        .close-cart {
-            border: none;
-            background: #32170b;
-            color: white;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 20px;
-        }
-
-        .cart-item {
-            background: white;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 12px;
-            box-shadow: 0 3px 12px rgba(0,0,0,.07);
-        }
-
-        .cart-item-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-        }
-
-        .cart-item h3 {
-            color: #32170b;
-            font-size: 17px;
-        }
-
-        .cart-item-price {
-            color: #a52a2a;
-            font-weight: bold;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .quantity-controls button {
-            width: 30px;
-            height: 30px;
-            border: none;
-            border-radius: 50%;
-            background: #f6c453;
-            color: #32170b;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .remove-item {
-            background: none !important;
-            color: #a52a2a !important;
-            width: auto !important;
-            border-radius: 0 !important;
-        }
-
-        .cart-total {
-            border-top: 2px solid #ddd;
-            margin-top: 20px;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 21px;
-            font-weight: bold;
-            color: #32170b;
-        }
-
-        .checkout-button {
-            width: 100%;
-            border: none;
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 30px;
-            background: #25D366;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .empty-cart {
-            text-align: center;
-            color: #777;
-            padding: 30px 10px;
-        }
-
-        /* =========================
-           CHECKOUT FORM
-        ========================= */
-
-        .checkout-form {
-            display: none;
-            margin-top: 20px;
-        }
-
-        .checkout-form.active {
-            display: block;
-        }
-
-        .checkout-form h3 {
-            color: #32170b;
-            margin-bottom: 15px;
-        }
-
-        .checkout-form label {
-            display: block;
-            margin-top: 12px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .checkout-form input,
-        .checkout-form textarea {
-            width: 100%;
-            margin-top: 5px;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 15px;
-        }
-
-        .checkout-form textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .send-order {
-            width: 100%;
-            border: none;
-            margin-top: 18px;
-            padding: 14px;
-            border-radius: 25px;
-            background: #32170b;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media (max-width: 700px) {
-
-            header {
-                padding: 14px 15px;
-            }
-
-            .logo {
-                font-size: 19px;
-            }
-
-            nav a {
-                margin-left: 7px;
-                font-size: 11px;
-            }
-
-            .cart-button {
-                margin-left: 8px;
-                padding: 8px 10px;
-                font-size: 12px;
-            }
-
-            .hero {
-                min-height: 80vh;
-            }
-
-            .hero p {
-                font-size: 17px;
-            }
-
-            section {
-                padding: 60px 20px;
-            }
-
-            .section-title h2,
-            .about h2,
-            .contact h2 {
-                font-size: 30px;
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-
-            .features {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cart-panel {
-                padding: 20px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Ama's Kitchen | Authentic Ghanaian Food</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf3;
+      color: #32170b;
+      line-height: 1.6;
+    }
+
+    /* ================= HEADER ================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: #32170b;
+      color: white;
+      padding: 15px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #f6c453;
+    }
+
+    .cart-button {
+      background: #f6c453;
+      color: #32170b;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: #d62828;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      min-height: 75vh;
+      background:
+        linear-gradient(rgba(50,23,11,0.65), rgba(50,23,11,0.65)),
+        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1400&q=80")
+        center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 30px;
+    }
+
+    .hero-content {
+      animation: fadeUp 1s ease;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 21px;
+      margin-bottom: 25px;
+    }
+
+    .hero-button {
+      display: inline-block;
+      background: #f6c453;
+      color: #32170b;
+      padding: 13px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-3px);
+      background: #ffd978;
+    }
+
+    /* ================= SECTIONS ================= */
+
+    section {
+      padding: 70px 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #765d50;
+      margin-bottom: 35px;
+    }
+
+    /* ================= SEARCH ================= */
+
+    .search-box {
+      max-width: 600px;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #eadbc8;
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+      background: white;
+    }
+
+    .search-box input:focus {
+      border-color: #f6c453;
+    }
+
+    /* ================= CATEGORIES ================= */
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 35px;
+    }
+
+    .category-button {
+      border: 2px solid #eadbc8;
+      background: white;
+      color: #32170b;
+      padding: 9px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .category-button:hover,
+    .category-button.active {
+      background: #32170b;
+      color: white;
+      border-color: #32170b;
+    }
+
+    /* ================= MENU ================= */
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .food-card {
+      position: relative;
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+
+    .food-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    .food-image {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .food-info {
+      padding: 20px;
+    }
+
+    .food-info h3 {
+      margin-bottom: 7px;
+      font-size: 21px;
+    }
+
+    .food-info p {
+      color: #765d50;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .food-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price {
+      font-weight: bold;
+      color: #b56b00;
+      font-size: 18px;
+    }
+
+    .add-button {
+      background: #32170b;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 22px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .add-button:hover {
+      background: #5b2d16;
+      transform: scale(1.04);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      background: #f6c453;
+      color: #32170b;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .favorite-button {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    }
+
+    .favorite-button.active {
+      color: #d62828;
+    }
+
+    .no-results {
+      text-align: center;
+      display: none;
+      padding: 30px;
+      color: #765d50;
+    }
+
+    /* ================= ABOUT ================= */
+
+    .about {
+      background: #f5eadb;
+      text-align: center;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      font-size: 17px;
+    }
+
+    /* ================= REVIEWS ================= */
+
+    .reviews {
+      background: white;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .review {
+      background: #fffaf3;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .stars {
+      color: #f6c453;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .review strong {
+      display: block;
+      margin-top: 12px;
+    }
+
+    /* ================= CONTACT ================= */
+
+    .contact {
+      text-align: center;
+      background: #32170b;
+      color: white;
+    }
+
+    .contact p {
+      margin-bottom: 20px;
+    }
+
+    .contact-button {
+      border: none;
+      background: #f6c453;
+      color: #32170b;
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      background: #1f0e06;
+      color: #ddd;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    /* ================= CART OVERLAY ================= */
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 2000;
+      display: none;
+    }
+
+    .cart-overlay.active {
+      display: block;
+    }
+
+    .cart-panel {
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: min(430px, 100%);
+      background: #fffaf3;
+      padding: 25px;
+      overflow-y: auto;
+      animation: slideIn 0.3s ease;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eadbc8;
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+
+    .cart-header h2 {
+      font-size: 25px;
+    }
+
+    .close-cart {
+      background: #32170b;
+      color: white;
+      border: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .empty-cart {
+      text-align: center;
+      padding: 40px 10px;
+      color: #765d50;
+    }
+
+    .cart-item {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+    }
+
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .cart-item h4 {
+      margin-bottom: 5px;
+    }
+
+    .cart-item-price {
+      color: #b56b00;
+      font-weight: bold;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .quantity-controls button {
+      width: 30px;
+      height: 30px;
+      border: none;
+      border-radius: 50%;
+      background: #32170b;
+      color: white;
+      cursor: pointer;
+    }
+
+    .remove-item {
+      margin-left: auto;
+      background: none !important;
+      color: #d62828 !important;
+      width: auto !important;
+    }
+
+    .cart-total {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid #eadbc8;
+      display: flex;
+      justify-content: space-between;
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 28px;
+      background: #32170b;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .checkout-button:hover {
+      background: #5b2d16;
+    }
+
+    /* ================= CHECKOUT ================= */
+
+    .checkout-form {
+      display: none;
+      margin-top: 25px;
+    }
+
+    .checkout-form h3 {
+      margin-bottom: 15px;
+    }
+
+    .checkout-form input,
+    .checkout-form select,
+    .checkout-form textarea {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 12px;
+      border: 1px solid #dbcab5;
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      font-family: inherit;
+      background: white;
+    }
+
+    .checkout-form textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .checkout-form input:focus,
+    .checkout-form select:focus,
+    .checkout-form textarea:focus {
+      border-color: #f6c453;
+    }
+
+    .send-order {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 28px;
+      background: #25D366;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* ================= WHATSAPP ================= */
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      font-size: 28px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+      z-index: 1500;
+      transition: 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    /* ================= ANIMATIONS ================= */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+
+      .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 13px 5%;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      nav {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: #32170b;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 20px;
+        gap: 5px;
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      nav a {
+        padding: 12px;
+        text-align: center;
+      }
+
+      nav .cart-button {
+        margin-top: 8px;
+      }
+
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 65vh;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      section {
+        padding: 55px 5%;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-    <!-- =========================
-         NAVIGATION
-    ========================= -->
+  <!-- ================= HEADER ================= -->
 
-    <header>
+  <header>
 
-        <div class="logo">
-            Ama's <span>Kitchen 🍲</span>
-        </div>
+    <div class="logo">
+      Ama's Kitchen 🍲
+    </div>
 
-        <nav>
-            <a href="#menu">Menu</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      ☰
+    </div>
 
-            <button class="cart-button" onclick="openCart()">
-                🛒 Cart
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
-        </nav>
+    <nav id="mainNav">
+      <a href="#home" onclick="closeMenu()">Home</a>
+      <a href="#menu" onclick="closeMenu()">Menu</a>
+      <a href="#about" onclick="closeMenu()">About</a>
+      <a href="#reviews" onclick="closeMenu()">Reviews</a>
+      <a href="#contact" onclick="closeMenu()">Contact</a>
 
-    </header>
+      <button class="cart-button" onclick="openCart()">
+        🛒 Cart
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </nav>
 
+  </header>
 
-    <!-- =========================
-         HERO
-    ========================= -->
 
-    <section class="hero">
+  <!-- ================= HERO ================= -->
 
-        <div class="hero-content">
+  <section class="hero" id="home">
 
-            <h1>
-                Taste the <span>Real Ghana</span>
-            </h1>
+    <div class="hero-content">
 
-            <p>
-                Authentic Ghanaian meals, freshly prepared
-                with love and served with a smile.
-            </p>
+      <h1>Taste the Real Ghana 🇬🇭</h1>
 
-            <div class="buttons">
+      <p>
+        Delicious homemade Ghanaian meals prepared with love.
+      </p>
 
-                <a href="#menu" class="btn primary">
-                    View Our Menu
-                </a>
+      <a href="#menu" class="hero-button">
+        Explore Our Menu 🍽️
+      </a>
 
-                <a href="#contact" class="btn secondary">
-                    Order Now
-                </a>
+    </div>
 
-            </div>
+  </section>
 
-        </div>
 
-    </section>
+  <!-- ================= MENU ================= -->
 
+  <section id="menu">
 
-    <!-- =========================
-         MENU
-    ========================= -->
+    <h2 class="section-title">
+      Our Menu
+    </h2>
 
-    <section id="menu">
+    <p class="section-subtitle">
+      Fresh, delicious and proudly Ghanaian.
+    </p>
 
-        <div class="section-title">
 
-            <small>Our Menu</small>
+    <!-- SEARCH -->
 
-            <h2>Popular Dishes 🍽️</h2>
+    <div class="search-box">
 
-            <p>
-                Fresh Ghanaian meals prepared with love.
-            </p>
-
-        </div>
-
-
-        <div class="menu">
-
-            <!-- JOLLOF -->
-
-            <div class="food-card">
-
-                <div class="popular-badge">
-                    POPULAR ⭐
-                </div>
-
-                <div class="food-image jollof"></div>
-
-                <div class="food-info">
-
-                    <h3>Jollof & Chicken</h3>
-
-                    <p>
-                        Rich Ghanaian jollof rice served
-                        with juicy chicken.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵35</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Jollof & Chicken', 35)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- WAAKYE -->
-
-            <div class="food-card">
-
-                <div class="food-image rice"></div>
-
-                <div class="food-info">
-
-                    <h3>Waakye Special</h3>
-
-                    <p>
-                        Traditional waakye with delicious
-                        sides and protein.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵30</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Waakye Special', 30)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- FRIED RICE -->
-
-            <div class="food-card">
-
-                <div class="food-image chicken"></div>
-
-                <div class="food-info">
-
-                    <h3>Fried Rice & Chicken</h3>
-
-                    <p>
-                        Flavorful fried rice served
-                        with crispy chicken.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵35</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Fried Rice & Chicken', 35)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- TILAPIA -->
-
-            <div class="food-card">
-
-                <div class="food-image fish"></div>
-
-                <div class="food-info">
-
-                    <h3>Banku & Tilapia</h3>
-
-                    <p>
-                        Grilled tilapia served with
-                        fresh pepper and banku.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵50</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Banku & Tilapia', 50)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- FUFU -->
-
-            <div class="food-card">
-
-                <div class="food-image jollof"></div>
-
-                <div class="food-info">
-
-                    <h3>Fufu & Light Soup</h3>
-
-                    <p>
-                        Soft fufu served with delicious
-                        Ghanaian light soup.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵45</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Fufu & Light Soup', 45)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- KELEWELE -->
-
-            <div class="food-card">
-
-                <div class="food-image chicken"></div>
-
-                <div class="food-info">
-
-                    <h3>Kelewele</h3>
-
-                    <p>
-                        Spicy fried plantain seasoned
-                        with Ghanaian spices.
-                    </p>
-
-                    <div class="price-row">
-
-                        <span class="price">₵20</span>
-
-                        <button
-                            class="add-button"
-                            onclick="addToCart('Kelewele', 20)"
-                        >
-                            Add to Cart
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         ABOUT
-    ========================= -->
-
-    <section id="about" class="about">
-
-        <div class="about-container">
-
-            <div>
-
-                <h2>
-                    Food Made With Love ❤️
-                </h2>
-
-                <p>
-                    At Ama's Kitchen, we believe good food
-                    brings people together.
-                </p>
-
-                <br>
-
-                <p>
-                    Our meals are inspired by the rich
-                    flavors and traditions of Ghana.
-                </p>
-
-            </div>
-
-
-            <div class="features">
-
-                <div class="feature">
-                    <strong>🍴 Fresh Food</strong>
-                    Quality ingredients every day.
-                </div>
-
-                <div class="feature">
-                    <strong>👩‍🍳 Homemade</strong>
-                    Prepared with care.
-                </div>
-
-                <div class="feature">
-                    <strong>⚡ Fast Service</strong>
-                    Quick and friendly service.
-                </div>
-
-                <div class="feature">
-                    <strong>❤️ Made With Love</strong>
-                    Every meal matters.
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         REVIEWS
-    ========================= -->
-
-    <section>
-
-        <div class="section-title">
-
-            <small>Happy Customers</small>
-
-            <h2>What People Say ⭐</h2>
-
-        </div>
-
-
-        <div class="reviews">
-
-            <div class="review">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "The jollof was amazing!
-                    I'll definitely order again."
-                </p>
-
-                <strong>— Nana</strong>
-
-            </div>
-
-
-            <div class="review">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "Great food, friendly service
-                    and reasonable prices."
-                </p>
-
-                <strong>— Kojo</strong>
-
-            </div>
-
-
-            <div class="review">
-
-                <div class="stars">
-                    ★★★★★
-                </div>
-
-                <p>
-                    "One of my favorite places
-                    to get Ghanaian food."
-                </p>
-
-                <strong>— Ama</strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CONTACT
-    ========================= -->
-
-    <section id="contact" class="contact">
-
-        <h2>
-            Ready to Eat? 😋
-        </h2>
-
-        <p>📍 Accra, Ghana</p>
-
-        <p>📞 050 000 0000</p>
-
-        <p>
-            🕐 Mon – Sat: 10:00 AM – 9:00 PM
-        </p>
-
-        <button
-            class="contact-button"
-            onclick="openCart()"
-        >
-            🛒 Start Your Order
-        </button>
-
-    </section>
-
-
-    <!-- =========================
-         FOOTER
-    ========================= -->
-
-    <footer>
-
-        <p>
-            <strong>Ama's Kitchen 🍲</strong>
-        </p>
-
-        <p>
-            Authentic Ghanaian Food
-        </p>
-
-        <br>
-
-        <p>
-            © 2026 Ama's Kitchen. All rights reserved.
-        </p>
-
-    </footer>
-
-
-    <!-- =========================
-         CART OVERLAY
-    ========================= -->
-
-    <div
-        class="cart-overlay"
-        id="cartOverlay"
-        onclick="closeCart()"
-    ></div>
-
-
-    <!-- =========================
-         CART PANEL
-    ========================= -->
-
-    <div
-        class="cart-panel"
-        id="cartPanel"
-    >
-
-        <div class="cart-header">
-
-            <h2>
-                Your Order 🛒
-            </h2>
-
-            <button
-                class="close-cart"
-                onclick="closeCart()"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <div id="cartItems">
-
-            <div class="empty-cart">
-                Your cart is empty.
-                <br>
-                Add some delicious food! 😋
-            </div>
-
-        </div>
-
-
-        <div
-            class="cart-total"
-            id="cartTotal"
-        >
-            <span>Total</span>
-            <span>₵0</span>
-        </div>
-
-
-        <button
-            class="checkout-button"
-            onclick="showCheckout()"
-        >
-            Continue to Checkout
-        </button>
-
-
-        <!-- CHECKOUT FORM -->
-
-        <div
-            class="checkout-form"
-            id="checkoutForm"
-        >
-
-            <h3>
-                Delivery Details 📦
-            </h3>
-
-            <label for="customerName">
-                Your Name
-            </label>
-
-            <input
-                type="text"
-                id="customerName"
-                placeholder="Enter your name"
-            >
-
-
-            <label for="customerPhone">
-                Phone Number
-            </label>
-
-            <input
-                type="tel"
-                id="customerPhone"
-                placeholder="050 000 0000"
-            >
-
-
-            <label for="customerAddress">
-                Delivery Address
-            </label>
-
-            <textarea
-                id="customerAddress"
-                placeholder="Enter your delivery address"
-            ></textarea>
-
-
-            <label for="customerNote">
-                Additional Note
-            </label>
-
-            <textarea
-                id="customerNote"
-                placeholder="Optional note..."
-            ></textarea>
-
-
-            <button
-                class="send-order"
-                onclick="sendOrderToWhatsApp()"
-            >
-                💬 Send Order on WhatsApp
-            </button>
-
-        </div>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="🔎 Search for food..."
+        oninput="filterMenu()"
+      >
 
     </div>
 
 
-    <!-- =========================
-         FLOATING WHATSAPP
-    ========================= -->
+    <!-- CATEGORIES -->
 
-    <a
-        class="whatsapp-float"
-        href="https://wa.me/233500000000?text=Hello%20Ama's%20Kitchen,%20I%20would%20like%20to%20place%20an%20order."
-        aria-label="Order on WhatsApp"
+    <div class="categories">
+
+      <button
+        class="category-button active"
+        onclick="filterCategory('all', this)"
+      >
+        All
+      </button>
+
+      <button
+        class="category-button"
+        onclick="filterCategory('rice', this)"
+      >
+        🍚 Rice
+      </button>
+
+      <button
+        class="category-button"
+        onclick="filterCategory('soup', this)"
+      >
+        🍲 Soups
+      </button>
+
+      <button
+        class="category-button"
+        onclick="filterCategory('swallow', this)"
+      >
+        🥣 Local Dishes
+      </button>
+
+      <button
+        class="category-button"
+        onclick="filterCategory('snacks', this)"
+      >
+        🍌 Snacks
+      </button>
+
+    </div>
+
+
+    <!-- FOOD GRID -->
+
+    <div class="menu-grid" id="menuGrid">
+
+
+      <!-- JOLLOF -->
+
+      <div class="food-card"
+           data-name="Jollof Rice & Chicken"
+           data-category="rice">
+
+        <span class="popular-badge">
+          POPULAR ⭐
+        </span>
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80"
+          alt="Jollof Rice and Chicken"
+        >
+
+        <div class="food-info">
+
+          <h3>Jollof & Chicken</h3>
+
+          <p>
+            Rich Ghanaian jollof served with juicy chicken.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵35
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Jollof & Chicken', 35)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- WAAKYE -->
+
+      <div class="food-card"
+           data-name="Waakye Special"
+           data-category="rice">
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80"
+          alt="Waakye"
+        >
+
+        <div class="food-info">
+
+          <h3>Waakye Special</h3>
+
+          <p>
+            Traditional waakye served with tasty sides.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵30
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Waakye Special', 30)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FRIED RICE -->
+
+      <div class="food-card"
+           data-name="Fried Rice & Chicken"
+           data-category="rice">
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80"
+          alt="Fried Rice and Chicken"
+        >
+
+        <div class="food-info">
+
+          <h3>Fried Rice & Chicken</h3>
+
+          <p>
+            Flavorful fried rice with perfectly seasoned chicken.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵35
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Fried Rice & Chicken', 35)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- BANKU -->
+
+      <div class="food-card"
+           data-name="Banku & Tilapia"
+           data-category="swallow">
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44?auto=format&fit=crop&w=900&q=80"
+          alt="Banku and Tilapia"
+        >
+
+        <div class="food-info">
+
+          <h3>Banku & Tilapia</h3>
+
+          <p>
+            Soft banku with grilled tilapia and pepper sauce.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵50
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Banku & Tilapia', 50)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FUFU -->
+
+      <div class="food-card"
+           data-name="Fufu & Light Soup"
+           data-category="soup">
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"
+          alt="Fufu and Soup"
+        >
+
+        <div class="food-info">
+
+          <h3>Fufu & Light Soup</h3>
+
+          <p>
+            Traditional fufu served with delicious light soup.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵45
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Fufu & Light Soup', 45)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- KELEWELE -->
+
+      <div class="food-card"
+           data-name="Kelewele"
+           data-category="snacks">
+
+        <button
+          class="favorite-button"
+          onclick="toggleFavorite(this)"
+        >
+          ♡
+        </button>
+
+        <img
+          class="food-image"
+          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80"
+          alt="Kelewele"
+        >
+
+        <div class="food-info">
+
+          <h3>Kelewele</h3>
+
+          <p>
+            Spicy fried plantain seasoned the Ghanaian way.
+          </p>
+
+          <div class="food-bottom">
+
+            <span class="price">
+              ₵20
+            </span>
+
+            <button
+              class="add-button"
+              onclick="addToCart('Kelewele', 20)"
+            >
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+      😕 No food found. Try another search.
+    </div>
+
+  </section>
+
+
+  <!-- ================= ABOUT ================= -->
+
+  <section class="about" id="about">
+
+    <h2 class="section-title">
+      About Ama's Kitchen
+    </h2>
+
+    <p class="section-subtitle">
+      Where every meal feels like home ❤️
+    </p>
+
+    <div class="about-content">
+
+      <p>
+        Ama's Kitchen brings you authentic Ghanaian meals made
+        with fresh ingredients, traditional recipes and plenty
+        of love. From delicious jollof to traditional fufu,
+        we are here to give you a true taste of Ghana.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= REVIEWS ================= -->
+
+  <section class="reviews" id="reviews">
+
+    <h2 class="section-title">
+      What Our Customers Say
+    </h2>
+
+    <p class="section-subtitle">
+      Real food. Real people. Real love.
+    </p>
+
+    <div class="review-grid">
+
+      <div class="review">
+
+        <div class="stars">
+          ⭐⭐⭐⭐⭐
+        </div>
+
+        <p>
+          "The jollof was amazing! It tasted just like
+          homemade Ghanaian food."
+        </p>
+
+        <strong>
+          — Nana
+        </strong>
+
+      </div>
+
+
+      <div class="review">
+
+        <div class="stars">
+          ⭐⭐⭐⭐⭐
+        </div>
+
+        <p>
+          "The waakye was delicious and the portion was great."
+        </p>
+
+        <strong>
+          — Akosua
+        </strong>
+
+      </div>
+
+
+      <div class="review">
+
+        <div class="stars">
+          ⭐⭐⭐⭐⭐
+        </div>
+
+        <p>
+          "Fast service, tasty food and very friendly."
+        </p>
+
+        <strong>
+          — Kwame
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= CONTACT ================= -->
+
+  <section class="contact" id="contact">
+
+    <h2 class="section-title">
+      Ready to Eat? 🍲
+    </h2>
+
+    <p>
+      Place your order now and enjoy delicious Ghanaian food.
+    </p>
+
+    <button
+      class="contact-button"
+      onclick="openCart()"
     >
-        💬
-    </a>
+      🛒 Start Your Order
+    </button>
+
+  </section>
 
 
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
+  <!-- ================= FOOTER ================= -->
 
-    <script>
+  <footer>
 
-        /* =========================
-           CART DATA
-        ========================= */
+    <p>
+      © 2026 Ama's Kitchen. All rights reserved.
+    </p>
 
-        let cart = [];
+    <p>
+      Made with ❤️ in Ghana 🇬🇭
+    </p>
+
+  </footer>
 
 
-        /* =========================
-           ADD TO CART
-        ========================= */
+  <!-- ================= CART ================= -->
 
-        function addToCart(name, price) {
+  <div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCartOutside(event)"
+  >
 
-            const existingItem = cart.find(
-                item => item.name === name
-            );
+    <div class="cart-panel">
 
-            if (existingItem) {
+      <div class="cart-header">
 
-                existingItem.quantity++;
+        <h2>
+          🛒 Your Order
+        </h2>
 
-            } else {
+        <button
+          class="close-cart"
+          onclick="closeCart()"
+        >
+          ×
+        </button>
 
-                cart.push({
-                    name: name,
-                    price: price,
-                    quantity: 1
-                });
+      </div>
 
-            }
 
-            updateCart();
+      <div id="cartItems">
 
-            openCart();
+        <div class="empty-cart">
+          Your cart is empty 🍽️
+        </div>
+
+      </div>
+
+
+      <div
+        class="cart-total"
+        id="cartTotal"
+      >
+        <span>
+          Total
+        </span>
+
+        <span>
+          ₵0
+        </span>
+      </div>
+
+
+      <button
+        class="checkout-button"
+        onclick="showCheckout()"
+        id="checkoutButton"
+      >
+        Continue to Checkout
+      </button>
+
+
+      <!-- CHECKOUT FORM -->
+
+      <div
+        class="checkout-form"
+        id="checkoutForm"
+      >
+
+        <h3>
+          📋 Delivery Details
+        </h3>
+
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Your name"
+        >
+
+        <input
+          type="tel"
+          id="customerPhone"
+          placeholder="Phone number"
+        >
+
+        <select id="deliveryArea">
+
+          <option value="">
+            Select delivery area
+          </option>
+
+          <option value="Accra Central">
+            Accra Central
+          </option>
+
+          <option value="Osu">
+            Osu
+          </option>
+
+          <option value="East Legon">
+            East Legon
+          </option>
+
+          <option value="Madina">
+            Madina
+          </option>
+
+          <option value="Spintex">
+            Spintex
+          </option>
+
+          <option value="Tema">
+            Tema
+          </option>
+
+          <option value="Other">
+            Other
+          </option>
+
+        </select>
+
+        <input
+          type="text"
+          id="deliveryAddress"
+          placeholder="Full delivery address"
+        >
+
+        <textarea
+          id="orderNote"
+          placeholder="Additional note (optional)"
+        ></textarea>
+
+        <button
+          class="send-order"
+          onclick="sendOrderToWhatsApp()"
+        >
+          💬 Send Order on WhatsApp
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= FLOATING WHATSAPP ================= -->
+
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/233500000000"
+    target="_blank"
+    aria-label="Chat with Ama's Kitchen on WhatsApp"
+  >
+    💬
+  </a>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+
+    /* ================= CART ================= */
+
+    let cart = [];
+
+
+    function addToCart(name, price) {
+
+      const existingItem = cart.find(
+        item => item.name === name
+      );
+
+      if (existingItem) {
+
+        existingItem.quantity++;
+
+      } else {
+
+        cart.push({
+          name: name,
+          price: price,
+          quantity: 1
+        });
+
+      }
+
+      updateCart();
+
+      openCart();
+
+    }
+
+
+    function updateCart() {
+
+      const cartItems = document.getElementById("cartItems");
+
+      const cartCount = document.getElementById("cartCount");
+
+      const cartTotal = document.getElementById("cartTotal");
+
+      let total = 0;
+
+      let itemCount = 0;
+
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+          <div class="empty-cart">
+            Your cart is empty 🍽️
+          </div>
+        `;
+
+      } else {
+
+        cartItems.innerHTML = "";
+
+        cart.forEach((item, index) => {
+
+          total += item.price * item.quantity;
+
+          itemCount += item.quantity;
+
+          const cartItem = document.createElement("div");
+
+          cartItem.className = "cart-item";
+
+          cartItem.innerHTML = `
+
+            <div class="cart-item-top">
+
+              <div>
+                <h4>${item.name}</h4>
+
+                <div class="cart-item-price">
+                  ₵${item.price} each
+                </div>
+              </div>
+
+              <strong>
+                ₵${item.price * item.quantity}
+              </strong>
+
+            </div>
+
+
+            <div class="quantity-controls">
+
+              <button
+                onclick="decreaseQuantity(${index})"
+              >
+                −
+              </button>
+
+              <strong>
+                ${item.quantity}
+              </strong>
+
+              <button
+                onclick="increaseQuantity(${index})"
+              >
+                +
+              </button>
+
+              <button
+                class="remove-item"
+                onclick="removeItem(${index})"
+              >
+                Remove
+              </button>
+
+            </div>
+
+          `;
+
+          cartItems.appendChild(cartItem);
+
+        });
+
+      }
+
+
+      cartCount.textContent = itemCount;
+
+      cartTotal.innerHTML = `
+        <span>Total</span>
+        <span>₵${total}</span>
+      `;
+
+    }
+
+
+    function increaseQuantity(index) {
+
+      cart[index].quantity++;
+
+      updateCart();
+
+    }
+
+
+    function decreaseQuantity(index) {
+
+      if (cart[index].quantity > 1) {
+
+        cart[index].quantity--;
+
+      } else {
+
+        cart.splice(index, 1);
+
+      }
+
+      updateCart();
+
+    }
+
+
+    function removeItem(index) {
+
+      cart.splice(index, 1);
+
+      updateCart();
+
+    }
+
+
+    /* ================= CART OPEN/CLOSE ================= */
+
+    function openCart() {
+
+      document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeCart() {
+
+      document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    function closeCartOutside(event) {
+
+      if (event.target.id === "cartOverlay") {
+
+        closeCart();
+
+      }
+
+    }
+
+
+    /* ================= CHECKOUT ================= */
+
+    function showCheckout() {
+
+      if (cart.length === 0) {
+
+        alert("Please add at least one meal to your cart.");
+
+        return;
+
+      }
+
+      const form = document.getElementById("checkoutForm");
+
+      form.style.display = "block";
+
+      document
+        .getElementById("checkoutButton")
+        .style.display = "none";
+
+      form.scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function sendOrderToWhatsApp() {
+
+      if (cart.length === 0) {
+
+        alert("Your cart is empty.");
+
+        return;
+
+      }
+
+
+      const name =
+        document.getElementById("customerName").value.trim();
+
+      const phone =
+        document.getElementById("customerPhone").value.trim();
+
+      const area =
+        document.getElementById("deliveryArea").value;
+
+      const address =
+        document.getElementById("deliveryAddress").value.trim();
+
+      const note =
+        document.getElementById("orderNote").value.trim();
+
+
+      if (!name || !phone || !area || !address) {
+
+        alert(
+          "Please complete your name, phone number, delivery area and address."
+        );
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+      let orderMessage =
+        "Hello Ama's Kitchen! 🍲%0A%0A";
+
+      orderMessage +=
+        "*NEW ORDER*%0A%0A";
+
+
+      orderMessage +=
+        "*Customer:* " +
+        encodeURIComponent(name) +
+        "%0A";
+
+      orderMessage +=
+        "*Phone:* " +
+        encodeURIComponent(phone) +
+        "%0A";
+
+      orderMessage +=
+        "*Delivery Area:* " +
+        encodeURIComponent(area) +
+        "%0A";
+
+      orderMessage +=
+        "*Address:* " +
+        encodeURIComponent(address) +
+        "%0A%0A";
+
+
+      orderMessage +=
+        "*ORDER DETAILS:*%0A";
+
+
+      cart.forEach(item => {
+
+        const itemTotal =
+          item.price * item.quantity;
+
+        total += itemTotal;
+
+        orderMessage +=
+          encodeURIComponent(
+            item.quantity +
+            " x " +
+            item.name +
+            " = ₵" +
+            itemTotal
+          ) +
+          "%0A";
+
+      });
+
+
+      orderMessage +=
+        "%0A*TOTAL: ₵" +
+        total +
+        "*%0A";
+
+
+      if (note) {
+
+        orderMessage +=
+          "%0A*Note:* " +
+          encodeURIComponent(note);
+
+      }
+
+
+      const whatsappNumber =
+        "233500000000";
+
+
+      const whatsappURL =
+        "https://wa.me/" +
+        whatsappNumber +
+        "?text=" +
+        orderMessage;
+
+
+      window.open(
+        whatsappURL,
+        "_blank"
+      );
+
+    }
+
+
+    /* ================= MOBILE MENU ================= */
+
+    function toggleMenu() {
+
+      document
+        .getElementById("mainNav")
+        .classList.toggle("active");
+
+    }
+
+
+    function closeMenu() {
+
+      document
+        .getElementById("mainNav")
+        .classList.remove("active");
+
+    }
+
+
+    /* ================= SEARCH ================= */
+
+    let selectedCategory = "all";
+
+
+    function filterMenu() {
+
+      const search =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+
+      const cards =
+        document.querySelectorAll(".food-card");
+
+      let visibleCount = 0;
+
+
+      cards.forEach(card => {
+
+        const name =
+          card
+            .dataset
+            .name
+            .toLowerCase();
+
+        const category =
+          card.dataset.category;
+
+
+        const matchesSearch =
+          name.includes(search);
+
+        const matchesCategory =
+          selectedCategory === "all" ||
+          category === selectedCategory;
+
+
+        if (
+          matchesSearch &&
+          matchesCategory
+        ) {
+
+          card.style.display = "";
+
+          visibleCount++;
+
+        } else {
+
+          card.style.display = "none";
+
         }
 
+      });
 
-        /* =========================
-           UPDATE CART
-        ========================= */
 
-        function updateCart() {
+      document.getElementById("noResults").style.display =
+        visibleCount === 0
+          ? "block"
+          : "none";
 
-            const cartItems = document.getElementById("cartItems");
-            const cartCount = document.getElementById("cartCount");
-            const cartTotal = document.getElementById("cartTotal");
+    }
 
-            cartItems.innerHTML = "";
 
-            let total = 0;
-            let itemCount = 0;
+    /* ================= CATEGORIES ================= */
 
+    function filterCategory(category, button) {
 
-            if (cart.length === 0) {
+      selectedCategory = category;
 
-                cartItems.innerHTML = `
-                    <div class="empty-cart">
-                        Your cart is empty.
-                        <br>
-                        Add some delicious food! 😋
-                    </div>
-                `;
 
-            }
+      document
+        .querySelectorAll(".category-button")
+        .forEach(btn => {
 
+          btn.classList.remove("active");
 
-            cart.forEach((item, index) => {
+        });
 
-                const itemTotal =
-                    item.price * item.quantity;
 
-                total += itemTotal;
+      button.classList.add("active");
 
-                itemCount += item.quantity;
 
+      filterMenu();
 
-                const cartItem = document.createElement("div");
+    }
 
-                cartItem.className = "cart-item";
 
-                cartItem.innerHTML = `
+    /* ================= FAVORITES ================= */
 
-                    <div class="cart-item-top">
+    function toggleFavorite(button) {
 
-                        <div>
-                            <h3>${item.name}</h3>
+      button.classList.toggle("active");
 
-                            <div class="cart-item-price">
-                                ₵${itemTotal}
-                            </div>
-                        </div>
 
-                    </div>
+      if (button.classList.contains("active")) {
 
+        button.textContent = "♥";
 
-                    <div class="quantity-controls">
+      } else {
 
-                        <button
-                            onclick="decreaseQuantity(${index})"
-                        >
-                            −
-                        </button>
+        button.textContent = "♡";
 
-                        <strong>
-                            ${item.quantity}
-                        </strong>
+      }
 
-                        <button
-                            onclick="increaseQuantity(${index})"
-                        >
-                            +
-                        </button>
+    }
 
-                        <button
-                            class="remove-item"
-                            onclick="removeItem(${index})"
-                        >
-                            Remove
-                        </button>
 
-                    </div>
+    /* ================= START ================= */
 
-                `;
+    updateCart();
 
-                cartItems.appendChild(cartItem);
-
-            });
-
-
-            cartCount.textContent = itemCount;
-
-            cartTotal.innerHTML = `
-                <span>Total</span>
-                <span>₵${total}</span>
-            `;
-
-        }
-
-
-        /* =========================
-           INCREASE QUANTITY
-        ========================= */
-
-        function increaseQuantity(index) {
-
-            cart[index].quantity++;
-
-            updateCart();
-
-        }
-
-
-        /* =========================
-           DECREASE QUANTITY
-        ========================= */
-
-        function decreaseQuantity(index) {
-
-            if (cart[index].quantity > 1) {
-
-                cart[index].quantity--;
-
-            } else {
-
-                cart.splice(index, 1);
-
-            }
-
-            updateCart();
-
-        }
-
-
-        /* =========================
-           REMOVE ITEM
-        ========================= */
-
-        function removeItem(index) {
-
-            cart.splice(index, 1);
-
-            updateCart();
-
-        }
-
-
-        /* =========================
-           OPEN CART
-        ========================= */
-
-        function openCart() {
-
-            document
-                .getElementById("cartOverlay")
-                .classList.add("active");
-
-            document
-                .getElementById("cartPanel")
-                .classList.add("active");
-
-        }
-
-
-        /* =========================
-           CLOSE CART
-        ========================= */
-
-        function closeCart() {
-
-            document
-                .getElementById("cartOverlay")
-                .classList.remove("active");
-
-            document
-                .getElementById("cartPanel")
-                .classList.remove("active");
-
-        }
-
-
-        /* =========================
-           SHOW CHECKOUT
-        ========================= */
-
-        function showCheckout() {
-
-            if (cart.length === 0) {
-
-                alert(
-                    "Please add at least one item to your cart."
-                );
-
-                return;
-
-            }
-
-            document
-                .getElementById("checkoutForm")
-                .classList.add("active");
-
-            document
-                .getElementById("checkoutForm")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }
-
-
-        /* =========================
-           SEND ORDER TO WHATSAPP
-        ========================= */
-
-        function sendOrderToWhatsApp() {
-
-            const name =
-                document.getElementById("customerName").value.trim();
-
-            const phone =
-                document.getElementById("customerPhone").value.trim();
-
-            const address =
-                document.getElementById("customerAddress").value.trim();
-
-            const note =
-                document.getElementById("customerNote").value.trim();
-
-
-            if (!name || !phone || !address) {
-
-                alert(
-                    "Please enter your name, phone number and delivery address."
-                );
-
-                return;
-
-            }
-
-
-            let message =
-                "Hello Ama's Kitchen! 🍲%0A%0A";
-
-            message +=
-                "*NEW ORDER*%0A%0A";
-
-            message +=
-                "👤 Name: " +
-                encodeURIComponent(name) +
-                "%0A";
-
-            message +=
-                "📞 Phone: " +
-                encodeURIComponent(phone) +
-                "%0A";
-
-            message +=
-                "📍 Address: " +
-                encodeURIComponent(address) +
-                "%0A%0A";
-
-
-            message +=
-                "*ORDER DETAILS*%0A";
-
-
-            let total = 0;
-
-
-            cart.forEach(item => {
-
-                const itemTotal =
-                    item.price * item.quantity;
-
-                total += itemTotal;
-
-                message +=
-                    encodeURIComponent(
-                        item.quantity +
-                        " × " +
-                        item.name +
-                        " — ₵" +
-                        itemTotal
-                    ) +
-                    "%0A";
-
-            });
-
-
-            message +=
-                "%0A*TOTAL: ₵" +
-                total +
-                "*%0A";
-
-
-            if (note) {
-
-                message +=
-                    "%0A📝 Note: " +
-                    encodeURIComponent(note);
-
-            }
-
-
-            /*
-              IMPORTANT:
-              Replace 233500000000 below with
-              the real Ama's Kitchen WhatsApp number.
-            */
-
-            const whatsappNumber =
-                "233500000000";
-
-
-            const whatsappURL =
-                "https://wa.me/" +
-                whatsappNumber +
-                "?text=" +
-                message;
-
-
-            window.open(
-                whatsappURL,
-                "_blank"
-            );
-
-        }
-
-    </script>
+  </script>
 
 </body>
-
 </html>
