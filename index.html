@@ -4,9 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Ama's Kitchen | Authentic Ghanaian Food</title>
+  <title>Ama's Kitchen | From Ama's Pot to Your Table</title>
 
   <style>
+    /* =========================================================
+       AMA'S KITCHEN — UNIQUE BRAND DESIGN
+       ========================================================= */
+
+    :root {
+      --brown: #32170b;
+      --deep-brown: #1c0d06;
+      --gold: #f6c453;
+      --gold-light: #ffe39a;
+      --cream: #fff8ed;
+      --orange: #d96b27;
+      --green: #26734d;
+      --red: #b9382c;
+      --text: #3b2419;
+      --muted: #806c5d;
+      --white: #ffffff;
+      --border: #ead8c2;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -16,54 +35,87 @@
 
     body {
       font-family: Arial, sans-serif;
-      background: #fffaf3;
-      color: #32170b;
+      background: var(--cream);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    /* ================= HEADER ================= */
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
 
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: #32170b;
+      background: rgba(50, 23, 11, 0.97);
       color: white;
-      padding: 15px 5%;
+      padding: 14px 5%;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      justify-content: space-between;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.2);
     }
 
     .logo {
-      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
       font-weight: bold;
+      font-size: 21px;
       white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--gold);
+      color: var(--brown);
+      border-radius: 50%;
+      font-size: 21px;
+    }
+
+    .logo-text small {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 2px;
+      color: var(--gold-light);
+      font-weight: normal;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 14px;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #f6c453;
+      color: var(--gold);
     }
 
     .cart-button {
-      background: #f6c453;
-      color: #32170b;
       border: none;
-      padding: 9px 14px;
+      background: var(--gold);
+      color: var(--brown);
+      padding: 10px 15px;
       border-radius: 25px;
       font-weight: bold;
       cursor: pointer;
@@ -73,139 +125,231 @@
     .cart-count {
       position: absolute;
       top: -8px;
-      right: -8px;
-      background: #d62828;
-      color: white;
+      right: -7px;
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      font-size: 12px;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
+      background: var(--red);
+      color: white;
+      font-size: 11px;
     }
 
     .menu-toggle {
       display: none;
-      font-size: 26px;
+      font-size: 27px;
       cursor: pointer;
     }
 
-    /* ================= HERO ================= */
+    /* =========================================================
+       HERO
+       ========================================================= */
 
     .hero {
-      min-height: 75vh;
-      background:
-        linear-gradient(rgba(50,23,11,0.65), rgba(50,23,11,0.65)),
-        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1400&q=80")
-        center/cover;
+      min-height: 82vh;
+      position: relative;
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      padding: 70px 7%;
       color: white;
-      padding: 30px;
+
+      background:
+        linear-gradient(
+          100deg,
+          rgba(28,13,6,0.93),
+          rgba(50,23,11,0.68),
+          rgba(50,23,11,0.28)
+        ),
+        url("https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: -55px;
+      left: -5%;
+      width: 110%;
+      height: 100px;
+      background: var(--cream);
+      transform: rotate(-2deg);
     }
 
     .hero-content {
-      animation: fadeUp 1s ease;
+      max-width: 650px;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.9s ease;
+    }
+
+    .hero-label {
+      display: inline-block;
+      color: var(--gold-light);
+      border: 1px solid rgba(246,196,83,0.6);
+      padding: 7px 14px;
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: 55px;
-      margin-bottom: 15px;
+      font-family: Georgia, serif;
+      font-size: clamp(43px, 7vw, 75px);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
     }
 
     .hero p {
-      font-size: 21px;
-      margin-bottom: 25px;
+      max-width: 520px;
+      color: #f6eadb;
+      font-size: 18px;
+      margin-bottom: 28px;
     }
 
-    .hero-button {
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
       display: inline-block;
-      background: #f6c453;
-      color: #32170b;
-      padding: 13px 25px;
+      padding: 13px 22px;
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
     }
 
-    .hero-button:hover {
-      transform: translateY(-3px);
-      background: #ffd978;
+    .primary-button {
+      background: var(--gold);
+      color: var(--brown);
     }
 
-    /* ================= SECTIONS ================= */
+    .secondary-button {
+      border: 1px solid rgba(255,255,255,0.5);
+      color: white;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* =========================================================
+       BRAND STRIP
+       ========================================================= */
+
+    .brand-strip {
+      background: var(--green);
+      color: white;
+      padding: 15px 5%;
+      text-align: center;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .brand-strip span {
+      margin: 0 8px;
+      color: var(--gold);
+    }
+
+    /* =========================================================
+       GENERAL SECTIONS
+       ========================================================= */
 
     section {
-      padding: 70px 5%;
+      padding: 75px 5%;
     }
 
-    .section-title {
+    .section-heading {
+      max-width: 750px;
+      margin: 0 auto 38px;
       text-align: center;
-      font-size: 34px;
-      margin-bottom: 10px;
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: #765d50;
-      margin-bottom: 35px;
+    .eyebrow {
+      color: var(--orange);
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: bold;
+      margin-bottom: 7px;
     }
 
-    /* ================= SEARCH ================= */
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      color: var(--brown);
+      font-size: clamp(30px, 5vw, 43px);
+      margin-bottom: 9px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       MENU
+       ========================================================= */
+
+    .menu-section {
+      background: var(--cream);
+    }
 
     .search-box {
       max-width: 600px;
-      margin: 0 auto 20px;
-      position: relative;
+      margin: 0 auto 18px;
     }
 
     .search-box input {
       width: 100%;
-      padding: 15px 20px;
-      border: 2px solid #eadbc8;
+      border: 2px solid var(--border);
       border-radius: 30px;
-      font-size: 16px;
+      padding: 15px 20px;
       outline: none;
       background: white;
+      font-size: 15px;
     }
 
     .search-box input:focus {
-      border-color: #f6c453;
+      border-color: var(--gold);
     }
-
-    /* ================= CATEGORIES ================= */
 
     .categories {
       display: flex;
       justify-content: center;
-      gap: 10px;
       flex-wrap: wrap;
+      gap: 8px;
       margin-bottom: 35px;
     }
 
     .category-button {
-      border: 2px solid #eadbc8;
+      border: 1px solid var(--border);
       background: white;
-      color: #32170b;
-      padding: 9px 18px;
+      color: var(--brown);
+      padding: 8px 15px;
       border-radius: 25px;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.3s;
+      transition: 0.25s;
     }
 
-    .category-button:hover,
-    .category-button.active {
-      background: #32170b;
+    .category-button.active,
+    .category-button:hover {
+      background: var(--brown);
+      border-color: var(--brown);
       color: white;
-      border-color: #32170b;
     }
-
-    /* ================= MENU ================= */
 
     .menu-grid {
       display: grid;
@@ -216,21 +360,77 @@
     .food-card {
       position: relative;
       background: white;
-      border-radius: 18px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.08);
+      border: 1px solid rgba(234,216,194,0.7);
+      box-shadow: 0 8px 25px rgba(50,23,11,0.07);
       transition: 0.3s;
     }
 
     .food-card:hover {
       transform: translateY(-7px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 32px rgba(50,23,11,0.13);
+    }
+
+    .food-image-wrap {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
     }
 
     .food-image {
       width: 100%;
-      height: 210px;
+      height: 100%;
       object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .food-card:hover .food-image {
+      transform: scale(1.06);
+    }
+
+    .dish-label {
+      position: absolute;
+      left: 13px;
+      bottom: 13px;
+      background: rgba(28,13,6,0.82);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 11px;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--gold);
+      color: var(--brown);
+      padding: 6px 11px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .favorite-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 38px;
+      height: 38px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: var(--brown);
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .favorite-button.active {
+      color: var(--red);
     }
 
     .food-info {
@@ -238,14 +438,16 @@
     }
 
     .food-info h3 {
-      margin-bottom: 7px;
+      font-family: Georgia, serif;
+      color: var(--brown);
       font-size: 21px;
+      margin-bottom: 6px;
     }
 
     .food-info p {
-      color: #765d50;
+      color: var(--muted);
       font-size: 14px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .food-bottom {
@@ -256,147 +458,235 @@
     }
 
     .price {
+      color: var(--orange);
       font-weight: bold;
-      color: #b56b00;
       font-size: 18px;
     }
 
     .add-button {
-      background: #32170b;
+      background: var(--brown);
       color: white;
       border: none;
       padding: 10px 14px;
       border-radius: 22px;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.3s;
+      transition: 0.25s;
     }
 
     .add-button:hover {
-      background: #5b2d16;
-      transform: scale(1.04);
-    }
-
-    .popular-badge {
-      position: absolute;
-      top: 12px;
-      left: 14px;
-      background: #f6c453;
-      color: #32170b;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      z-index: 2;
-    }
-
-    .favorite-button {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      width: 38px;
-      height: 38px;
-      border: none;
-      border-radius: 50%;
-      background: white;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 2;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    }
-
-    .favorite-button.active {
-      color: #d62828;
+      background: var(--orange);
+      transform: scale(1.03);
     }
 
     .no-results {
-      text-align: center;
       display: none;
+      text-align: center;
       padding: 30px;
-      color: #765d50;
+      color: var(--muted);
     }
 
-    /* ================= ABOUT ================= */
+    /* =========================================================
+       OUR STORY
+       ========================================================= */
 
-    .about {
-      background: #f5eadb;
+    .story {
+      background: #f1e3d2;
+    }
+
+    .story-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .story-image {
+      width: 100%;
+      height: 430px;
+      object-fit: cover;
+      border-radius: 25px;
+      box-shadow: 15px 15px 0 var(--gold);
+    }
+
+    .story-text .eyebrow {
+      margin-bottom: 8px;
+    }
+
+    .story-text h2 {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      color: var(--brown);
+      line-height: 1.1;
+      margin-bottom: 18px;
+    }
+
+    .story-text p {
+      color: var(--muted);
+      margin-bottom: 15px;
+    }
+
+    .signature {
+      margin-top: 20px;
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: var(--orange);
+      font-size: 20px;
+    }
+
+    /* =========================================================
+       SPECIAL FEATURE
+       ========================================================= */
+
+    .feature {
+      background: var(--brown);
+      color: white;
       text-align: center;
     }
 
-    .about-content {
+    .feature-box {
       max-width: 800px;
       margin: auto;
-      font-size: 17px;
     }
 
-    /* ================= REVIEWS ================= */
+    .feature-box .eyebrow {
+      color: var(--gold);
+    }
+
+    .feature-box h2 {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .feature-box p {
+      color: #eadbc9;
+      margin-bottom: 22px;
+    }
+
+    .feature-button {
+      border: none;
+      background: var(--gold);
+      color: var(--brown);
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       REVIEWS
+       ========================================================= */
 
     .reviews {
       background: white;
     }
 
     .review-grid {
+      max-width: 1100px;
+      margin: auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 22px;
     }
 
     .review {
-      background: #fffaf3;
       padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      border-radius: 18px;
+      background: var(--cream);
+      border: 1px solid var(--border);
     }
 
     .stars {
-      color: #f6c453;
-      font-size: 20px;
+      color: var(--gold);
+      font-size: 19px;
       margin-bottom: 10px;
+    }
+
+    .review p {
+      color: var(--muted);
     }
 
     .review strong {
       display: block;
-      margin-top: 12px;
+      margin-top: 14px;
+      color: var(--brown);
     }
 
-    /* ================= CONTACT ================= */
+    /* =========================================================
+       CONTACT
+       ========================================================= */
 
     .contact {
+      background:
+        linear-gradient(rgba(50,23,11,0.94), rgba(50,23,11,0.94)),
+        url("https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1400&q=80")
+        center/cover;
       text-align: center;
-      background: #32170b;
       color: white;
     }
 
+    .contact h2 {
+      font-family: Georgia, serif;
+      font-size: 43px;
+      margin-bottom: 10px;
+    }
+
     .contact p {
-      margin-bottom: 20px;
+      color: #eadbc9;
+      margin-bottom: 23px;
     }
 
     .contact-button {
       border: none;
-      background: #f6c453;
-      color: #32170b;
-      padding: 13px 25px;
+      background: var(--gold);
+      color: var(--brown);
+      padding: 14px 25px;
       border-radius: 30px;
       font-weight: bold;
       cursor: pointer;
     }
 
-    /* ================= FOOTER ================= */
+    /* =========================================================
+       FOOTER
+       ========================================================= */
 
     footer {
-      background: #1f0e06;
-      color: #ddd;
+      background: var(--deep-brown);
+      color: #d9c8b8;
+      padding: 35px 5%;
       text-align: center;
-      padding: 25px;
-      font-size: 14px;
     }
 
-    /* ================= CART OVERLAY ================= */
+    .footer-brand {
+      color: white;
+      font-family: Georgia, serif;
+      font-size: 24px;
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      font-size: 13px;
+    }
+
+    .footer-line {
+      width: 70px;
+      height: 3px;
+      background: var(--gold);
+      margin: 15px auto;
+      border-radius: 5px;
+    }
+
+    /* =========================================================
+       CART
+       ========================================================= */
 
     .cart-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(0,0,0,0.58);
       z-index: 2000;
       display: none;
     }
@@ -409,11 +699,11 @@
       position: absolute;
       right: 0;
       top: 0;
+      width: min(440px, 100%);
       height: 100%;
-      width: min(430px, 100%);
-      background: #fffaf3;
-      padding: 25px;
       overflow-y: auto;
+      background: var(--cream);
+      padding: 25px;
       animation: slideIn 0.3s ease;
     }
 
@@ -421,38 +711,39 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #eadbc8;
+      border-bottom: 1px solid var(--border);
       padding-bottom: 15px;
       margin-bottom: 20px;
     }
 
     .cart-header h2 {
-      font-size: 25px;
+      font-family: Georgia, serif;
+      color: var(--brown);
     }
 
     .close-cart {
-      background: #32170b;
-      color: white;
-      border: none;
       width: 38px;
       height: 38px;
+      border: none;
       border-radius: 50%;
-      font-size: 20px;
+      background: var(--brown);
+      color: white;
       cursor: pointer;
+      font-size: 20px;
     }
 
     .empty-cart {
       text-align: center;
-      padding: 40px 10px;
-      color: #765d50;
+      color: var(--muted);
+      padding: 45px 10px;
     }
 
     .cart-item {
       background: white;
       padding: 15px;
-      border-radius: 12px;
+      border-radius: 14px;
       margin-bottom: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
     }
 
     .cart-item-top {
@@ -462,12 +753,13 @@
     }
 
     .cart-item h4 {
-      margin-bottom: 5px;
+      color: var(--brown);
     }
 
     .cart-item-price {
-      color: #b56b00;
-      font-weight: bold;
+      color: var(--orange);
+      font-size: 13px;
+      margin-top: 3px;
     }
 
     .quantity-controls {
@@ -482,26 +774,27 @@
       height: 30px;
       border: none;
       border-radius: 50%;
-      background: #32170b;
+      background: var(--brown);
       color: white;
       cursor: pointer;
     }
 
     .remove-item {
       margin-left: auto;
-      background: none !important;
-      color: #d62828 !important;
+      background: transparent !important;
+      color: var(--red) !important;
       width: auto !important;
     }
 
     .cart-total {
+      border-top: 2px solid var(--border);
       margin-top: 20px;
-      padding-top: 15px;
-      border-top: 2px solid #eadbc8;
+      padding-top: 16px;
       display: flex;
       justify-content: space-between;
       font-size: 21px;
       font-weight: bold;
+      color: var(--brown);
     }
 
     .checkout-button {
@@ -510,18 +803,11 @@
       padding: 14px;
       border: none;
       border-radius: 28px;
-      background: #32170b;
+      background: var(--brown);
       color: white;
-      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
-
-    .checkout-button:hover {
-      background: #5b2d16;
-    }
-
-    /* ================= CHECKOUT ================= */
 
     .checkout-form {
       display: none;
@@ -529,6 +815,8 @@
     }
 
     .checkout-form h3 {
+      font-family: Georgia, serif;
+      color: var(--brown);
       margin-bottom: 15px;
     }
 
@@ -536,13 +824,11 @@
     .checkout-form select,
     .checkout-form textarea {
       width: 100%;
-      padding: 13px;
-      margin-bottom: 12px;
-      border: 1px solid #dbcab5;
+      border: 1px solid var(--border);
       border-radius: 10px;
-      font-size: 15px;
+      padding: 13px;
+      margin-bottom: 11px;
       outline: none;
-      font-family: inherit;
       background: white;
     }
 
@@ -551,41 +837,37 @@
       resize: vertical;
     }
 
-    .checkout-form input:focus,
-    .checkout-form select:focus,
-    .checkout-form textarea:focus {
-      border-color: #f6c453;
-    }
-
     .send-order {
       width: 100%;
-      padding: 14px;
       border: none;
       border-radius: 28px;
+      padding: 14px;
       background: #25D366;
       color: white;
-      font-weight: bold;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
     }
 
-    /* ================= WHATSAPP ================= */
+    /* =========================================================
+       WHATSAPP
+       ========================================================= */
 
     .whatsapp-float {
       position: fixed;
-      right: 20px;
-      bottom: 20px;
+      right: 19px;
+      bottom: 19px;
       width: 58px;
       height: 58px;
       border-radius: 50%;
-      background: #25D366;
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: #25D366;
+      color: white;
       text-decoration: none;
-      font-size: 28px;
-      box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+      font-size: 27px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
       z-index: 1500;
       transition: 0.3s;
     }
@@ -594,7 +876,9 @@
       transform: scale(1.1);
     }
 
-    /* ================= ANIMATIONS ================= */
+    /* =========================================================
+       ANIMATIONS
+       ========================================================= */
 
     @keyframes fadeUp {
       from {
@@ -618,7 +902,9 @@
       }
     }
 
-    /* ================= MOBILE ================= */
+    /* =========================================================
+       TABLET
+       ========================================================= */
 
     @media (max-width: 900px) {
 
@@ -626,19 +912,27 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .review-grid {
+      .story-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero h1 {
-        font-size: 42px;
+      .story-image {
+        height: 350px;
+      }
+
+      .review-grid {
+        grid-template-columns: 1fr;
       }
     }
+
+    /* =========================================================
+       MOBILE
+       ========================================================= */
 
     @media (max-width: 700px) {
 
       header {
-        padding: 13px 5%;
+        padding: 11px 5%;
       }
 
       .menu-toggle {
@@ -646,16 +940,16 @@
       }
 
       nav {
+        display: none;
         position: absolute;
-        top: 65px;
+        top: 63px;
         left: 0;
         width: 100%;
-        background: #32170b;
-        display: none;
+        background: var(--brown);
         flex-direction: column;
         align-items: stretch;
-        padding: 20px;
-        gap: 5px;
+        gap: 0;
+        padding: 12px 20px 20px;
       }
 
       nav.active {
@@ -663,7 +957,7 @@
       }
 
       nav a {
-        padding: 12px;
+        padding: 11px;
         text-align: center;
       }
 
@@ -671,28 +965,39 @@
         margin-top: 8px;
       }
 
+      .hero {
+        min-height: 75vh;
+        padding: 55px 6%;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
       .menu-grid {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        min-height: 65vh;
+      .story-text h2,
+      .feature-box h2,
+      .contact h2 {
+        font-size: 34px;
       }
 
-      .hero h1 {
-        font-size: 35px;
-      }
-
-      .hero p {
-        font-size: 17px;
+      .story-image {
+        height: 300px;
       }
 
       section {
-        padding: 55px 5%;
+        padding: 60px 5%;
       }
 
-      .section-title {
-        font-size: 28px;
+      .food-image-wrap {
+        height: 230px;
       }
     }
   </style>
@@ -700,66 +1005,159 @@
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+  <!-- =======================================================
+       HEADER
+       ======================================================= -->
 
   <header>
 
     <div class="logo">
-      Ama's Kitchen 🍲
+
+      <div class="logo-mark">
+        🍲
+      </div>
+
+      <div class="logo-text">
+        Ama's Kitchen
+        <small>GHANAIAN • HOMEMADE • HEARTFELT</small>
+      </div>
+
     </div>
 
-    <div class="menu-toggle" onclick="toggleMenu()">
+
+    <div
+      class="menu-toggle"
+      onclick="toggleMenu()"
+    >
       ☰
     </div>
 
+
     <nav id="mainNav">
+
       <a href="#home" onclick="closeMenu()">Home</a>
+
       <a href="#menu" onclick="closeMenu()">Menu</a>
-      <a href="#about" onclick="closeMenu()">About</a>
+
+      <a href="#story" onclick="closeMenu()">Our Story</a>
+
       <a href="#reviews" onclick="closeMenu()">Reviews</a>
+
       <a href="#contact" onclick="closeMenu()">Contact</a>
 
-      <button class="cart-button" onclick="openCart()">
+      <button
+        class="cart-button"
+        onclick="openCart()"
+      >
         🛒 Cart
-        <span class="cart-count" id="cartCount">0</span>
+
+        <span
+          class="cart-count"
+          id="cartCount"
+        >
+          0
+        </span>
+
       </button>
+
     </nav>
 
   </header>
 
 
-  <!-- ================= HERO ================= -->
+  <!-- =======================================================
+       HERO
+       ======================================================= -->
 
-  <section class="hero" id="home">
+  <section
+    class="hero"
+    id="home"
+  >
 
     <div class="hero-content">
 
-      <h1>Taste the Real Ghana 🇬🇭</h1>
+      <div class="hero-label">
+        🇬🇭 A TASTE OF HOME
+      </div>
+
+      <h1>
+        From Ama's pot
+        <br>
+        <span>to your table.</span>
+      </h1>
 
       <p>
-        Delicious homemade Ghanaian meals prepared with love.
+        Authentic Ghanaian meals, prepared with fresh ingredients,
+        traditional flavors and the kind of love you can taste.
       </p>
 
-      <a href="#menu" class="hero-button">
-        Explore Our Menu 🍽️
-      </a>
+      <div class="hero-actions">
+
+        <a
+          href="#menu"
+          class="primary-button"
+        >
+          Explore the Menu 🍽️
+        </a>
+
+        <a
+          href="#story"
+          class="secondary-button"
+        >
+          Meet Ama
+        </a>
+
+      </div>
 
     </div>
 
   </section>
 
 
-  <!-- ================= MENU ================= -->
+  <!-- =======================================================
+       BRAND STRIP
+       ======================================================= -->
 
-  <section id="menu">
+  <div class="brand-strip">
 
-    <h2 class="section-title">
-      Our Menu
-    </h2>
+    FRESH INGREDIENTS
+    <span>•</span>
 
-    <p class="section-subtitle">
-      Fresh, delicious and proudly Ghanaian.
-    </p>
+    GHANAIAN RECIPES
+    <span>•</span>
+
+    MADE WITH LOVE
+    <span>•</span>
+
+    🇬🇭 PROUDLY GHANAIAN
+
+  </div>
+
+
+  <!-- =======================================================
+       MENU
+       ======================================================= -->
+
+  <section
+    class="menu-section"
+    id="menu"
+  >
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        What are you craving?
+      </div>
+
+      <h2>
+        Food that feels like home.
+      </h2>
+
+      <p>
+        Pick your favorite Ghanaian classic and let Ama do the rest.
+      </p>
+
+    </div>
 
 
     <!-- SEARCH -->
@@ -769,7 +1167,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="🔎 Search for food..."
+        placeholder="🔎 Search jollof, waakye, fufu..."
         oninput="filterMenu()"
       >
 
@@ -803,7 +1201,7 @@
 
       <button
         class="category-button"
-        onclick="filterCategory('swallow', this)"
+        onclick="filterCategory('local', this)"
       >
         🥣 Local Dishes
       </button>
@@ -818,19 +1216,24 @@
     </div>
 
 
-    <!-- FOOD GRID -->
+    <!-- MENU GRID -->
 
-    <div class="menu-grid" id="menuGrid">
+    <div
+      class="menu-grid"
+      id="menuGrid"
+    >
 
 
       <!-- JOLLOF -->
 
-      <div class="food-card"
-           data-name="Jollof Rice & Chicken"
-           data-category="rice">
+      <div
+        class="food-card"
+        data-name="Jollof Rice Chicken"
+        data-category="rice"
+      >
 
         <span class="popular-badge">
-          POPULAR ⭐
+          CHEF AMA'S PICK ⭐
         </span>
 
         <button
@@ -840,18 +1243,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=80"
-          alt="Jollof Rice and Chicken"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1000&q=85"
+            alt="Jollof Rice and Chicken"
+          >
+
+          <span class="dish-label">
+            Signature Dish
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Jollof & Chicken</h3>
+          <h3>
+            Jollof & Chicken
+          </h3>
 
           <p>
-            Rich Ghanaian jollof served with juicy chicken.
+            Smoky, rich Ghanaian jollof with beautifully seasoned chicken.
           </p>
 
           <div class="food-bottom">
@@ -864,7 +1277,7 @@
               class="add-button"
               onclick="addToCart('Jollof & Chicken', 35)"
             >
-              Add to Cart
+              Add + 
             </button>
 
           </div>
@@ -876,9 +1289,11 @@
 
       <!-- WAAKYE -->
 
-      <div class="food-card"
-           data-name="Waakye Special"
-           data-category="rice">
+      <div
+        class="food-card"
+        data-name="Waakye Special"
+        data-category="rice"
+      >
 
         <button
           class="favorite-button"
@@ -887,18 +1302,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80"
-          alt="Waakye"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1000&q=85"
+            alt="Waakye"
+          >
+
+          <span class="dish-label">
+            Ghanaian Classic
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Waakye Special</h3>
+          <h3>
+            Waakye Special
+          </h3>
 
           <p>
-            Traditional waakye served with tasty sides.
+            Traditional waakye with tasty sides for a proper Ghanaian meal.
           </p>
 
           <div class="food-bottom">
@@ -911,7 +1336,7 @@
               class="add-button"
               onclick="addToCart('Waakye Special', 30)"
             >
-              Add to Cart
+              Add +
             </button>
 
           </div>
@@ -923,9 +1348,11 @@
 
       <!-- FRIED RICE -->
 
-      <div class="food-card"
-           data-name="Fried Rice & Chicken"
-           data-category="rice">
+      <div
+        class="food-card"
+        data-name="Fried Rice Chicken"
+        data-category="rice"
+      >
 
         <button
           class="favorite-button"
@@ -934,18 +1361,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=80"
-          alt="Fried Rice and Chicken"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=1000&q=85"
+            alt="Fried Rice and Chicken"
+          >
+
+          <span class="dish-label">
+            Customer Favorite
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Fried Rice & Chicken</h3>
+          <h3>
+            Fried Rice & Chicken
+          </h3>
 
           <p>
-            Flavorful fried rice with perfectly seasoned chicken.
+            Fragrant fried rice paired with tender, seasoned chicken.
           </p>
 
           <div class="food-bottom">
@@ -958,7 +1395,7 @@
               class="add-button"
               onclick="addToCart('Fried Rice & Chicken', 35)"
             >
-              Add to Cart
+              Add +
             </button>
 
           </div>
@@ -970,9 +1407,11 @@
 
       <!-- BANKU -->
 
-      <div class="food-card"
-           data-name="Banku & Tilapia"
-           data-category="swallow">
+      <div
+        class="food-card"
+        data-name="Banku Tilapia"
+        data-category="local"
+      >
 
         <button
           class="favorite-button"
@@ -981,18 +1420,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44?auto=format&fit=crop&w=900&q=80"
-          alt="Banku and Tilapia"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1544943910-4c1dc44aab44?auto=format&fit=crop&w=1000&q=85"
+            alt="Banku and Tilapia"
+          >
+
+          <span class="dish-label">
+            From the Coast
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Banku & Tilapia</h3>
+          <h3>
+            Banku & Tilapia
+          </h3>
 
           <p>
-            Soft banku with grilled tilapia and pepper sauce.
+            Soft banku, grilled tilapia and fresh pepper sauce.
           </p>
 
           <div class="food-bottom">
@@ -1005,7 +1454,7 @@
               class="add-button"
               onclick="addToCart('Banku & Tilapia', 50)"
             >
-              Add to Cart
+              Add +
             </button>
 
           </div>
@@ -1017,9 +1466,11 @@
 
       <!-- FUFU -->
 
-      <div class="food-card"
-           data-name="Fufu & Light Soup"
-           data-category="soup">
+      <div
+        class="food-card"
+        data-name="Fufu Light Soup"
+        data-category="soup"
+      >
 
         <button
           class="favorite-button"
@@ -1028,18 +1479,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"
-          alt="Fufu and Soup"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85"
+            alt="Fufu and Light Soup"
+          >
+
+          <span class="dish-label">
+            Sunday Comfort
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Fufu & Light Soup</h3>
+          <h3>
+            Fufu & Light Soup
+          </h3>
 
           <p>
-            Traditional fufu served with delicious light soup.
+            Soft fufu served with a comforting, flavorful light soup.
           </p>
 
           <div class="food-bottom">
@@ -1052,7 +1513,7 @@
               class="add-button"
               onclick="addToCart('Fufu & Light Soup', 45)"
             >
-              Add to Cart
+              Add +
             </button>
 
           </div>
@@ -1064,9 +1525,11 @@
 
       <!-- KELEWELE -->
 
-      <div class="food-card"
-           data-name="Kelewele"
-           data-category="snacks">
+      <div
+        class="food-card"
+        data-name="Kelewele"
+        data-category="snacks"
+      >
 
         <button
           class="favorite-button"
@@ -1075,18 +1538,28 @@
           ♡
         </button>
 
-        <img
-          class="food-image"
-          src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80"
-          alt="Kelewele"
-        >
+        <div class="food-image-wrap">
+
+          <img
+            class="food-image"
+            src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=1000&q=85"
+            alt="Kelewele"
+          >
+
+          <span class="dish-label">
+            Street Food Favorite
+          </span>
+
+        </div>
 
         <div class="food-info">
 
-          <h3>Kelewele</h3>
+          <h3>
+            Kelewele
+          </h3>
 
           <p>
-            Spicy fried plantain seasoned the Ghanaian way.
+            Sweet, spicy fried plantain with Ama's special seasoning.
           </p>
 
           <div class="food-bottom">
@@ -1099,7 +1572,7 @@
               class="add-button"
               onclick="addToCart('Kelewele', 20)"
             >
-              Add to Cart
+              Add +
             </button>
 
           </div>
@@ -1110,62 +1583,144 @@
 
     </div>
 
-    <div class="no-results" id="noResults">
-      😕 No food found. Try another search.
+
+    <div
+      class="no-results"
+      id="noResults"
+    >
+      😕 Nothing matched your search. Try another dish.
     </div>
 
   </section>
 
 
-  <!-- ================= ABOUT ================= -->
+  <!-- =======================================================
+       OUR STORY
+       ======================================================= -->
 
-  <section class="about" id="about">
+  <section
+    class="story"
+    id="story"
+  >
 
-    <h2 class="section-title">
-      About Ama's Kitchen
-    </h2>
+    <div class="story-grid">
 
-    <p class="section-subtitle">
-      Where every meal feels like home ❤️
-    </p>
+      <img
+        class="story-image"
+        src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=85"
+        alt="Cooking food"
+      >
 
-    <div class="about-content">
+
+      <div class="story-text">
+
+        <div class="eyebrow">
+          Our Story
+        </div>
+
+        <h2>
+          More than food.
+          It's a taste of home.
+        </h2>
+
+        <p>
+          Ama's Kitchen started with a simple idea:
+          good food should bring people together.
+        </p>
+
+        <p>
+          Inspired by the meals shared around Ghanaian family
+          tables, every dish is prepared to bring that same
+          feeling of warmth, comfort and togetherness to you.
+        </p>
+
+        <p>
+          Whether you're craving jollof after a long day or
+          looking for that Sunday fufu feeling, there is a
+          little piece of home waiting for you here.
+        </p>
+
+        <div class="signature">
+          — With love, Ama ❤️
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       CHEF AMA'S PICK
+       ======================================================= -->
+
+  <section class="feature">
+
+    <div class="feature-box">
+
+      <div class="eyebrow">
+        Today's recommendation
+      </div>
+
+      <h2>
+        Let Ama choose for you. 🍲
+      </h2>
 
       <p>
-        Ama's Kitchen brings you authentic Ghanaian meals made
-        with fresh ingredients, traditional recipes and plenty
-        of love. From delicious jollof to traditional fufu,
-        we are here to give you a true taste of Ghana.
+        Not sure what to order? Start with our signature
+        Jollof & Chicken — the dish that started it all.
+      </p>
+
+      <button
+        class="feature-button"
+        onclick="addToCart('Jollof & Chicken', 35)"
+      >
+        Add Chef Ama's Pick — ₵35
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- =======================================================
+       REVIEWS
+       ======================================================= -->
+
+  <section
+    class="reviews"
+    id="reviews"
+  >
+
+    <div class="section-heading">
+
+      <div class="eyebrow">
+        From the table
+      </div>
+
+      <h2>
+        What people are saying.
+      </h2>
+
+      <p>
+        A few words from people who have tasted Ama's cooking.
       </p>
 
     </div>
 
-  </section>
-
-
-  <!-- ================= REVIEWS ================= -->
-
-  <section class="reviews" id="reviews">
-
-    <h2 class="section-title">
-      What Our Customers Say
-    </h2>
-
-    <p class="section-subtitle">
-      Real food. Real people. Real love.
-    </p>
 
     <div class="review-grid">
 
       <div class="review">
 
         <div class="stars">
-          ⭐⭐⭐⭐⭐
+          ★★★★★
         </div>
 
         <p>
-          "The jollof was amazing! It tasted just like
-          homemade Ghanaian food."
+          "The jollof tasted like the kind you get at a proper
+          Ghanaian family gathering. Absolutely delicious."
         </p>
 
         <strong>
@@ -1178,11 +1733,12 @@
       <div class="review">
 
         <div class="stars">
-          ⭐⭐⭐⭐⭐
+          ★★★★★
         </div>
 
         <p>
-          "The waakye was delicious and the portion was great."
+          "The waakye was delicious and the portion was great.
+          I will definitely order again."
         </p>
 
         <strong>
@@ -1195,11 +1751,12 @@
       <div class="review">
 
         <div class="stars">
-          ⭐⭐⭐⭐⭐
+          ★★★★★
         </div>
 
         <p>
-          "Fast service, tasty food and very friendly."
+          "Fast service, tasty food and that kelewele was
+          exactly what I needed!"
         </p>
 
         <strong>
@@ -1213,16 +1770,26 @@
   </section>
 
 
-  <!-- ================= CONTACT ================= -->
+  <!-- =======================================================
+       CONTACT
+       ======================================================= -->
 
-  <section class="contact" id="contact">
+  <section
+    class="contact"
+    id="contact"
+  >
 
-    <h2 class="section-title">
-      Ready to Eat? 🍲
+    <div class="eyebrow">
+      Your next meal is waiting
+    </div>
+
+    <h2>
+      Hungry yet?
     </h2>
 
     <p>
-      Place your order now and enjoy delicious Ghanaian food.
+      Choose your favorites, tell us where to deliver,
+      and we'll take care of the rest.
     </p>
 
     <button
@@ -1235,22 +1802,32 @@
   </section>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- =======================================================
+       FOOTER
+       ======================================================= -->
 
   <footer>
 
-    <p>
-      © 2026 Ama's Kitchen. All rights reserved.
-    </p>
+    <div class="footer-brand">
+      Ama's Kitchen 🍲
+    </div>
+
+    <div class="footer-line"></div>
 
     <p>
-      Made with ❤️ in Ghana 🇬🇭
+      From Ama's pot to your table. 🇬🇭
+    </p>
+
+    <p style="margin-top:8px;">
+      © 2026 Ama's Kitchen. All rights reserved.
     </p>
 
   </footer>
 
 
-  <!-- ================= CART ================= -->
+  <!-- =======================================================
+       CART
+       ======================================================= -->
 
   <div
     class="cart-overlay"
@@ -1279,7 +1856,7 @@
       <div id="cartItems">
 
         <div class="empty-cart">
-          Your cart is empty 🍽️
+          Your basket is waiting 🍽️
         </div>
 
       </div>
@@ -1289,26 +1866,21 @@
         class="cart-total"
         id="cartTotal"
       >
-        <span>
-          Total
-        </span>
-
-        <span>
-          ₵0
-        </span>
+        <span>Total</span>
+        <span>₵0</span>
       </div>
 
 
       <button
         class="checkout-button"
-        onclick="showCheckout()"
         id="checkoutButton"
+        onclick="showCheckout()"
       >
         Continue to Checkout
       </button>
 
 
-      <!-- CHECKOUT FORM -->
+      <!-- CHECKOUT -->
 
       <div
         class="checkout-form"
@@ -1392,7 +1964,9 @@
   </div>
 
 
-  <!-- ================= FLOATING WHATSAPP ================= -->
+  <!-- =======================================================
+       WHATSAPP
+       ======================================================= -->
 
   <a
     class="whatsapp-float"
@@ -1404,7 +1978,9 @@
   </a>
 
 
-  <!-- ================= JAVASCRIPT ================= -->
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
 
   <script>
 
@@ -1412,12 +1988,10 @@
 
     let cart = [];
 
-
     function addToCart(name, price) {
 
-      const existingItem = cart.find(
-        item => item.name === name
-      );
+      const existingItem =
+        cart.find(item => item.name === name);
 
       if (existingItem) {
 
@@ -1442,11 +2016,15 @@
 
     function updateCart() {
 
-      const cartItems = document.getElementById("cartItems");
+      const cartItems =
+        document.getElementById("cartItems");
 
-      const cartCount = document.getElementById("cartCount");
+      const cartCount =
+        document.getElementById("cartCount");
 
-      const cartTotal = document.getElementById("cartTotal");
+      const cartTotal =
+        document.getElementById("cartTotal");
+
 
       let total = 0;
 
@@ -1457,7 +2035,7 @@
 
         cartItems.innerHTML = `
           <div class="empty-cart">
-            Your cart is empty 🍽️
+            Your basket is waiting 🍽️
           </div>
         `;
 
@@ -1467,28 +2045,39 @@
 
         cart.forEach((item, index) => {
 
-          total += item.price * item.quantity;
+          const itemTotal =
+            item.price * item.quantity;
+
+          total += itemTotal;
 
           itemCount += item.quantity;
 
-          const cartItem = document.createElement("div");
 
-          cartItem.className = "cart-item";
+          const element =
+            document.createElement("div");
 
-          cartItem.innerHTML = `
+          element.className =
+            "cart-item";
+
+
+          element.innerHTML = `
 
             <div class="cart-item-top">
 
               <div>
-                <h4>${item.name}</h4>
+
+                <h4>
+                  ${item.name}
+                </h4>
 
                 <div class="cart-item-price">
                   ₵${item.price} each
                 </div>
+
               </div>
 
               <strong>
-                ₵${item.price * item.quantity}
+                ₵${itemTotal}
               </strong>
 
             </div>
@@ -1523,14 +2112,17 @@
 
           `;
 
-          cartItems.appendChild(cartItem);
+
+          cartItems.appendChild(element);
 
         });
 
       }
 
 
-      cartCount.textContent = itemCount;
+      cartCount.textContent =
+        itemCount;
+
 
       cartTotal.innerHTML = `
         <span>Total</span>
@@ -1575,7 +2167,7 @@
     }
 
 
-    /* ================= CART OPEN/CLOSE ================= */
+    /* ================= CART OPEN ================= */
 
     function openCart() {
 
@@ -1583,7 +2175,8 @@
         .getElementById("cartOverlay")
         .classList.add("active");
 
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow =
+        "hidden";
 
     }
 
@@ -1594,14 +2187,17 @@
         .getElementById("cartOverlay")
         .classList.remove("active");
 
-      document.body.style.overflow = "";
+      document.body.style.overflow =
+        "";
 
     }
 
 
     function closeCartOutside(event) {
 
-      if (event.target.id === "cartOverlay") {
+      if (
+        event.target.id === "cartOverlay"
+      ) {
 
         closeCart();
 
@@ -1616,23 +2212,23 @@
 
       if (cart.length === 0) {
 
-        alert("Please add at least one meal to your cart.");
+        alert(
+          "Please add a meal to your basket first."
+        );
 
         return;
 
       }
 
-      const form = document.getElementById("checkoutForm");
 
-      form.style.display = "block";
+      document
+        .getElementById("checkoutForm")
+        .style.display = "block";
+
 
       document
         .getElementById("checkoutButton")
         .style.display = "none";
-
-      form.scrollIntoView({
-        behavior: "smooth"
-      });
 
     }
 
@@ -1641,7 +2237,9 @@
 
       if (cart.length === 0) {
 
-        alert("Your cart is empty.");
+        alert(
+          "Your basket is empty."
+        );
 
         return;
 
@@ -1649,22 +2247,45 @@
 
 
       const name =
-        document.getElementById("customerName").value.trim();
+        document
+          .getElementById("customerName")
+          .value
+          .trim();
+
 
       const phone =
-        document.getElementById("customerPhone").value.trim();
+        document
+          .getElementById("customerPhone")
+          .value
+          .trim();
+
 
       const area =
-        document.getElementById("deliveryArea").value;
+        document
+          .getElementById("deliveryArea")
+          .value;
+
 
       const address =
-        document.getElementById("deliveryAddress").value.trim();
+        document
+          .getElementById("deliveryAddress")
+          .value
+          .trim();
+
 
       const note =
-        document.getElementById("orderNote").value.trim();
+        document
+          .getElementById("orderNote")
+          .value
+          .trim();
 
 
-      if (!name || !phone || !area || !address) {
+      if (
+        !name ||
+        !phone ||
+        !area ||
+        !address
+      ) {
 
         alert(
           "Please complete your name, phone number, delivery area and address."
@@ -1677,36 +2298,41 @@
 
       let total = 0;
 
-      let orderMessage =
-        "Hello Ama's Kitchen! 🍲%0A%0A";
 
-      orderMessage +=
-        "*NEW ORDER*%0A%0A";
+      let message =
+        "Hello Ama's Kitchen! 🍲\n\n";
 
 
-      orderMessage +=
-        "*Customer:* " +
-        encodeURIComponent(name) +
-        "%0A";
-
-      orderMessage +=
-        "*Phone:* " +
-        encodeURIComponent(phone) +
-        "%0A";
-
-      orderMessage +=
-        "*Delivery Area:* " +
-        encodeURIComponent(area) +
-        "%0A";
-
-      orderMessage +=
-        "*Address:* " +
-        encodeURIComponent(address) +
-        "%0A%0A";
+      message +=
+        "NEW ORDER\n\n";
 
 
-      orderMessage +=
-        "*ORDER DETAILS:*%0A";
+      message +=
+        "Customer: " +
+        name +
+        "\n";
+
+
+      message +=
+        "Phone: " +
+        phone +
+        "\n";
+
+
+      message +=
+        "Delivery Area: " +
+        area +
+        "\n";
+
+
+      message +=
+        "Address: " +
+        address +
+        "\n\n";
+
+
+      message +=
+        "ORDER DETAILS:\n";
 
 
       cart.forEach(item => {
@@ -1716,33 +2342,37 @@
 
         total += itemTotal;
 
-        orderMessage +=
-          encodeURIComponent(
-            item.quantity +
-            " x " +
-            item.name +
-            " = ₵" +
-            itemTotal
-          ) +
-          "%0A";
+
+        message +=
+          item.quantity +
+          " x " +
+          item.name +
+          " = ₵" +
+          itemTotal +
+          "\n";
 
       });
 
 
-      orderMessage +=
-        "%0A*TOTAL: ₵" +
-        total +
-        "*%0A";
+      message +=
+        "\nTOTAL: ₵" +
+        total;
 
 
       if (note) {
 
-        orderMessage +=
-          "%0A*Note:* " +
-          encodeURIComponent(note);
+        message +=
+          "\n\nNote: " +
+          note;
 
       }
 
+
+      /*
+        IMPORTANT:
+        Replace this placeholder with
+        the real Ama's Kitchen WhatsApp number.
+      */
 
       const whatsappNumber =
         "233500000000";
@@ -1752,7 +2382,7 @@
         "https://wa.me/" +
         whatsappNumber +
         "?text=" +
-        orderMessage;
+        encodeURIComponent(message);
 
 
       window.open(
@@ -1785,7 +2415,8 @@
 
     /* ================= SEARCH ================= */
 
-    let selectedCategory = "all";
+    let selectedCategory =
+      "all";
 
 
     function filterMenu() {
@@ -1799,18 +2430,21 @@
 
 
       const cards =
-        document.querySelectorAll(".food-card");
+        document.querySelectorAll(
+          ".food-card"
+        );
 
-      let visibleCount = 0;
+
+      let visible =
+        0;
 
 
       cards.forEach(card => {
 
         const name =
-          card
-            .dataset
-            .name
+          card.dataset.name
             .toLowerCase();
+
 
         const category =
           card.dataset.category;
@@ -1818,6 +2452,7 @@
 
         const matchesSearch =
           name.includes(search);
+
 
         const matchesCategory =
           selectedCategory === "all" ||
@@ -1829,21 +2464,25 @@
           matchesCategory
         ) {
 
-          card.style.display = "";
+          card.style.display =
+            "";
 
-          visibleCount++;
+          visible++;
 
         } else {
 
-          card.style.display = "none";
+          card.style.display =
+            "none";
 
         }
 
       });
 
 
-      document.getElementById("noResults").style.display =
-        visibleCount === 0
+      document
+        .getElementById("noResults")
+        .style.display =
+        visible === 0
           ? "block"
           : "none";
 
@@ -1852,21 +2491,31 @@
 
     /* ================= CATEGORIES ================= */
 
-    function filterCategory(category, button) {
+    function filterCategory(
+      category,
+      button
+    ) {
 
-      selectedCategory = category;
+      selectedCategory =
+        category;
 
 
       document
-        .querySelectorAll(".category-button")
+        .querySelectorAll(
+          ".category-button"
+        )
         .forEach(btn => {
 
-          btn.classList.remove("active");
+          btn.classList.remove(
+            "active"
+          );
 
         });
 
 
-      button.classList.add("active");
+      button.classList.add(
+        "active"
+      );
 
 
       filterMenu();
@@ -1878,23 +2527,31 @@
 
     function toggleFavorite(button) {
 
-      button.classList.toggle("active");
+      button.classList.toggle(
+        "active"
+      );
 
 
-      if (button.classList.contains("active")) {
+      if (
+        button.classList.contains(
+          "active"
+        )
+      ) {
 
-        button.textContent = "♥";
+        button.textContent =
+          "♥";
 
       } else {
 
-        button.textContent = "♡";
+        button.textContent =
+          "♡";
 
       }
 
     }
 
 
-    /* ================= START ================= */
+    /* ================= INITIALIZE ================= */
 
     updateCart();
 
